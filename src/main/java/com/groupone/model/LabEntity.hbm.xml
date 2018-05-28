@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.groupone.model.LabEntity" table="lab" schema="j2ee">
+        <id name="labId" column="labID"/>
+        <property name="labName" column="labName"/>
+        <property name="location" column="location"/>
+        <property name="safeLevel" column="safeLevel"/>
+    </class>
+</hibernate-mapping>

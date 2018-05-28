@@ -1,0 +1,24 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-configuration PUBLIC
+        "-//Hibernate/Hibernate Configuration DTD//EN"
+        "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
+<hibernate-configuration>
+    <session-factory>
+        <property name="connection.url">jdbc:mysql://120.79.154.14:3306/j2ee</property>
+        <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
+        <property name="show_sql">true</property>
+        <property name="format_sql">true</property>
+        <property name="hibernate.dialect">org.hibernate.dialect.MySQLDialect</property>
+        <property name="hibernate.connection.autocommit">true</property>
+        <mapping resource="com/groupone/model/AdminEntity.hbm.xml"/>
+        <mapping class="com.groupone.model.AdminEntity"/>
+        <mapping resource="com/groupone/model/ComputerEntity.hbm.xml"/>
+        <mapping class="com.groupone.model.ComputerEntity"/>
+        <mapping class="com.groupone.model.LabEntity"/>
+        <mapping resource="com/groupone/model/LabEntity.hbm.xml"/>
+        <mapping class="com.groupone.model.LoginEntity"/>
+        <mapping resource="com/groupone/model/LoginEntity.hbm.xml"/>
+        <mapping resource="com/groupone/model/UserEntity.hbm.xml"/>
+        <mapping class="com.groupone.model.UserEntity"/>
+    </session-factory>
+</hibernate-configuration>

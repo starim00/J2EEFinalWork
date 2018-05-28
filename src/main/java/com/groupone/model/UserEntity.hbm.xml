@@ -1,0 +1,13 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.groupone.model.UserEntity" table="user" schema="j2ee">
+        <id name="userId" column="userID"/>
+        <property name="userName" column="userName"/>
+        <property name="passwd" column="passwd"/>
+        <property name="tel" column="tel"/>
+    </class>
+</hibernate-mapping>

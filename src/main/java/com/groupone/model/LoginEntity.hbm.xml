@@ -1,0 +1,12 @@
+<?xml version='1.0' encoding='utf-8'?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+
+    <class name="com.groupone.model.LoginEntity" table="login" schema="j2ee">
+        <id name="loginId" column="loginID"/>
+        <property name="inTime" column="inTime"/>
+        <property name="outTime" column="outTime"/>
+    </class>
+</hibernate-mapping>
