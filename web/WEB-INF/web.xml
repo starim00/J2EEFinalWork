@@ -11,4 +11,15 @@
         <servlet-name>login</servlet-name>
         <url-pattern>/login</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>logined</servlet-name>
+        <servlet-class>com.groupone.servlet.loginedServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>logined</servlet-name>
+        <url-pattern>/logined</url-pattern>
+    </servlet-mapping>
+    <listener>
+        <listener-class>com.groupone.servlet.MyListener</listener-class>
+    </listener>
 </web-app>
