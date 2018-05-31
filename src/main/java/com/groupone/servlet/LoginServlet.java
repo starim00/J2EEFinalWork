@@ -1,7 +1,5 @@
 package com.groupone.servlet;
 
-import com.google.gson.Gson;
-import com.google.gson.JsonObject;
 import com.groupone.model.UserDAO;
 import com.groupone.model.UserEntity;
 
@@ -17,23 +15,17 @@ public class LoginServlet extends HttpServlet {
         response.setHeader("Access-Control-Allow-Origin", "*");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
-        System.out.println("123123");
-        System.out.println(username);
-        System.out.println(password);
         String result;
         UserEntity user = userDAO.getUserByUserId(username);
 
         if(user==null){
-            result="{state:0}";
-            System.out.println("1");
+            result="{\"state\":0}";
         }
         else if(!user.getPasswd().equals(password)){
-            result="{state:0}";
-            System.out.println("2");
+            result="{\"state\":0}";
         }
         else{
             result="{\"state\":1}";
-            System.out.println("3");
         }
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(result);

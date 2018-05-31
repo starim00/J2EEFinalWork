@@ -1,5 +1,6 @@
 package com.groupone.servlet;
 
+import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.support.ClassPathXmlApplicationContext;
 
@@ -14,7 +15,8 @@ import javax.servlet.http.HttpSessionBindingEvent;
 @WebListener()
 public class MyListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
-
+    public static ApplicationContext applicationContext;
+    public static SessionFactory sessionFactory;
     // Public constructor is required by servlet spec
     public MyListener() {
     }
@@ -27,7 +29,8 @@ public class MyListener implements ServletContextListener,
          initialized(when the Web application is deployed). 
          You can initialize servlet context related data here.
       */
-        ApplicationContext applicationContext = new ClassPathXmlApplicationContext("application.xml");
+        applicationContext = new ClassPathXmlApplicationContext("application.xml");
+        sessionFactory = (SessionFactory)applicationContext.getBean("sessionFactory");
     }
 
     public void contextDestroyed(ServletContextEvent sce) {
