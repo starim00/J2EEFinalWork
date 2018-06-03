@@ -38,6 +38,7 @@ public class MyListener implements ServletContextListener,
          (the Web application) is undeployed or 
          Application Server shuts down.
       */
+      sessionFactory.close();
     }
 
     // -------------------------------------------------------

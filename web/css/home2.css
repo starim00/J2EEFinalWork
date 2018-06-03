@@ -1,0 +1,29 @@
+body{
+	min-width: 400px;
+}
+.my-right{
+	padding-top: 10px;
+	width: 98%;
+	margin: 0 auto;
+}
+@media only screen and (max-width: 992px) {
+	header,
+	footer {
+		padding-left: 0;
+	}
+}
+.brand-logo{
+	left: 5%;
+}
+.hide-on-med-and-down{
+	margin-right: 5%;
+}
+nav ul a{
+	font-size: 1.15em;
+}
+nav{
+	background-color: #00bcd4 ;
+}
+#dropdown1 li>a{
+	color: #00bcd4 ;
+}

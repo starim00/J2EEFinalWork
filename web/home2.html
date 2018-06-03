@@ -1,0 +1,689 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!--Import Google Icon Font-->
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <!--Import materialize.css-->
+    <link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.css" media="screen,projection"/>
+    <link type="text/css" rel="stylesheet" href="css/home2.css"/>
+    <!--Let browser know website is optimized for mobile-->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta charset="utf-8"/>
+</head>
+
+<body>
+<!-- Dropdown Structure -->
+<div id="my_mod_modal" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>管理我的信息</h4>
+        <div class="row">
+            <div class="input-field col s12">
+                <input id="my_name_mod" type="text" class="validate">
+                <label for="my_name_mod">用户姓名</label>
+            </div>
+            <div class="input-field col s12">
+                <input id="my_pas_mod" type="password" class="validate">
+                <label for="my_pas_mod">用户密码</label>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+    </div>
+</div>
+<div id="my_group" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4>小组介绍</h4>
+        <div class="row">
+            <table class="striped centered   s12 m12 l12 ">
+                <thead>
+                <tr>
+                    <th data-field="name">组员</th>
+                    <th data-field="id">学号</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>王芸琦</td>
+                    <td>31501110</td>
+                </tr>
+                <tr>
+                    <td>胡添策</td>
+                    <td>31501115</td>
+                </tr>
+                <tr>
+                    <td>陈禹彬</td>
+                    <td>31501112</td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+<header>
+    <ul id="dropdown1" class="dropdown-content">
+        <li>
+            <a class="waves-effect waves-light modal-trigger" href="#my_mod_modal">管理我的</a>
+        </li>
+        <li class="divider"></li>
+        <li>
+            <a class="waves-effect waves-light" href="login.html">退出登录</a>
+        </li>
+    </ul>
+    <nav class="nav-extended">
+        <div class="nav-wrapper">
+            <a href="home.html" class="brand-logo">实验室管理系统</a>
+            <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
+            <ul id="nav-mobile" class="right hide-on-med-and-down">
+                <li>
+                    <a class="dropdown-trigger" href="#!" data-target="dropdown1">用户中心<i class="material-icons right">arrow_drop_down</i></a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-light modal-trigger" href="#my_group">信息</a>
+                </li>
+            </ul>
+            <ul class="sidenav" id="mobile-demo">
+
+                <li>
+                    <a class="waves-effect waves-light modal-trigger" href="#my_mod_modal">管理我的</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-light modal-trigger" href="#my_group">信息</a>
+                </li>
+                <li>
+                    <a class="waves-effect waves-light" href="login.html">退出登录</a>
+                </li>
+            </ul>
+        </div>
+        <div class="nav-content">
+            <ul class="tabs tabs-transparent">
+                <li class="tab">
+                    <a href="#lab">实验室管理</a>
+                </li>
+                <li class="tab">
+                    <a href="#com">计算机管理</a>
+                </li>
+                <li class="tab">
+                    <a href="#acc">用户管理</a>
+                </li>
+                <!--<li class="tab">
+                    <a href="#any">统计分析</a>
+                </li>-->
+            </ul>
+        </div>
+    </nav>
+</header>
+<div class="my-right">
+    <!--
+111111111111111111111111111111111111111111111111111111111111111111111111111111111111111
+-->
+    <div id="lab" class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6 l3">
+                        <input id="lab_name" type="text" class="validate">
+                        <label for="lab_name">实验室名称</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <input id="lab_adm" type="text" class="validate">
+                        <label for="lab_adm">实验室管理员</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <input id="lab_loc" type="text" class="validate">
+                        <label for="lab_loc">实验室位置</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <select>
+                            <option value="" disabled selected>实验室安全等级</option>
+                            <option value="1">A</option>
+                            <option value="2">B</option>
+                            <option value="3">C</option>
+                            <option value="3">D</option>
+                        </select>
+                        <label>实验室安全等级</label>
+                    </div>
+                </div>
+            </form>
+            <div class="row">
+                <div class=" left-align col s6 m6 l6">
+                    <a class="modal-trigger waves-effect waves-light btn green modal-trigger" href="#lab_add_modal1">添加</a>
+                </div>
+                <div class=" right-align col s6 m6 l6">
+                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
+                    <a class="waves-effect waves-light btn grey">重置</a>
+                </div>
+            </div>
+            <div id="lab_add_modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>添加实验室</h4>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="lab_name_add" type="text" class="validate">
+                            <label for="lab_name_add">请输入实验室名称</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="lab_adm_add" type="text" class="validate">
+                            <label for="lab_adm_add">请输入实验室管理员</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="lab_loc_add" type="text" class="validate">
+                            <label for="lab_loc_add">请输入实验室位置</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>实验室安全等级</option>
+                                <option value="1">A</option>
+                                <option value="2">B</option>
+                                <option value="3">C</option>
+                                <option value="3">D</option>
+                            </select>
+                            <label>请选择实验室安全等级</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                </div>
+
+            </div>
+            <div id="lab_look_modal" class="modal bottom-sheet">
+                <div class="modal-content container">
+                    <h4>实验室计算机使用情况</h4>
+                    <table class="striped centered   s12 m12 l12 ">
+                        <thead>
+                        <tr>
+                            <th data-field="desk">桌号</th>
+                            <th data-field="sum_time">使用总时长</th>
+                            <th data-field="sum_numk">使用总次数</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>12</td>
+                            <td>6</td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>2</td>
+                            <td>1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="home-table ">
+            <table class="striped centered   s12 m12 l12 ">
+                <thead>
+                <tr>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">实验室名称</th>
+                    <th data-field="lead">实验室管理员</th>
+                    <th data-field="loca">实验室位置</th>
+                    <th data-field="save">实验室安全等级</th>
+                    <th data-field="look">操作</th>
+                </tr>
+                </thead>
+                <div id="lab_mod_modal1" class="modal modal-fixed-footer">
+                    <div class="modal-content">
+                        <h4>修改实验室</h4>
+                        <div class="row">
+                            <div class="input-field col s12">
+                                <input id="lab_name_mod" type="text" class="validate">
+                                <label for="lab_name_mod">实验室名称</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="lab_adm_mod" type="text" class="validate">
+                                <label for="lab_adm_mod">实验室管理员</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <input id="lab_loc_mod" type="text" class="validate">
+                                <label for="lab_loc_mod">实验室位置</label>
+                            </div>
+                            <div class="input-field col s12">
+                                <select>
+                                    <option value="" disabled selected>实验室安全等级</option>
+                                    <option value="1">A</option>
+                                    <option value="2">B</option>
+                                    <option value="3">C</option>
+                                    <option value="3">D</option>
+                                </select>
+                                <label>实验室安全等级</label>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                    </div>
+                </div>
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>教室1</td>
+                    <td>蔡剑平</td>
+                    <td>理四218</td>
+                    <td>C</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#lab_look_modal">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#lab_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red " onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>教室2</td>
+                    <td>蔡剑平</td>
+                    <td>理四218</td>
+                    <td>B</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo" href="#lab_look_modal">查看</a>
+                        <a class="waves-effect waves-light btn purple" href="#lab_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--
+    22222222222222222222222222222222222222222222222222222222222222222222222222
+    -->
+    <div id="com" class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m4 l4">
+                        <input id="com_ip" type="text" class="validate">
+                        <label for="com_ip">计算机IP</label>
+                    </div>
+                    <div class="input-field col s12 m4 l4">
+                        <input id="com_num" type="number" class="validate">
+                        <label for="com_num">计算机桌号</label>
+                    </div>
+                    <div class="input-field col s12 m4 l4">
+                        <select>
+                            <option value="" disabled selected>实验室名称</option>
+                            <option value="1">物联网实验室</option>
+                            <option value="2">教室1</option>
+                        </select>
+                        <label>所在实验室名称</label>
+                    </div>
+                </div>
+            </form>
+            <div id="com_mod_modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>修改计算机</h4>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="com_ip_mod" type="text" class="validate">
+                            <label for="com_ip_mod">计算机IP</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="com_num_mod" type="number" class="validate">
+                            <label for="com_num_mod">计算机桌号</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>实验室名称</option>
+                                <option value="1">物联网实验室</option>
+                                <option value="2">教室1</option>
+                            </select>
+                            <label>所在实验室名称</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                </div>
+            </div>
+            <div class="row">
+                <div class="left-align col s6 m6 l6">
+                    <a class="modal-trigger waves-effect waves-light btn green" href="#com_add_modal1">添加</a>
+                </div>
+                <div class="right-align col s6 m6 l6">
+                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
+                    <a class="waves-effect waves-light btn grey">重置</a>
+                </div>
+            </div>
+            <div id="com_add_modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>添加计算机</h4>
+
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="com_ip_add" type="text" class="validate">
+                            <label for="com_ip_add">计算机IP</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="com_num_add" type="number" class="validate">
+                            <label for="com_num_add">计算机桌号</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>实验室名称</option>
+                                <option value="1">物联网实验室</option>
+                                <option value="2">教室1</option>
+                            </select>
+                            <label>所在实验室名称</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                </div>
+            </div>
+            <div id="com_look_modal1" class="modal bottom-sheet">
+                <div class="modal-content container">
+                    <h4>计算机使用情况</h4>
+                    <table class="striped centered s12 m12 l12 ">
+                        <thead>
+                        <tr>
+                            <th data-field="sum_time">使用总时长</th>
+                            <th data-field="sum_numk">使用总次数</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>22</td>
+                            <td>10</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <h5>详细信息</h5>
+                    <table class="striped centered   s12 m12 l12 ">
+                        <thead>
+                        <tr>
+                            <th data-field="acc_id">用户id</th>
+                            <th data-field="in">上线时间</th>
+                            <th data-field="out">下线时间</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>31501110</td>
+                            <td>2018.03.31,09:00:00</td>
+                            <td>2018.03.31,11:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>31501115</td>
+                            <td>2018.02.11,13:00:00</td>
+                            <td>2018.02.11,15:00:00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="home-table ">
+            <table class="striped centered   s12 m12 l12 ">
+                <thead>
+                <tr>
+                    <th data-field="id">ID</th>
+                    <th data-field="ip">计算机IP</th>
+                    <th data-field="desk">计算机桌号</th>
+                    <th data-field="labname">实验室名称</th>
+                    <th data-field="look">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>192.168.1.2</td>
+                    <td>22</td>
+                    <td>物联网实验室</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#com_look_modal1">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#com_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>10.66.3.11</td>
+                    <td>33</td>
+                    <td>教室1</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#com_look_modal1">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#com_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!--
+        3333333333333333333333333333333333333333333333333
+    -->
+    <div id="acc" class="container">
+        <div class="row">
+            <form class="col s12">
+                <div class="row">
+                    <div class="input-field col s12 m6 l3">
+                        <input id="acc_id" type="text" class="validate">
+                        <label for="acc_id">用户ID</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <input id="acc_name" type="text" class="validate">
+                        <label for="acc_name">用户姓名</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <input id="acc_pas" type="password" class="validate">
+                        <label for="acc_pas">用户密码</label>
+                    </div>
+                    <div class="input-field col s12 m6 l3">
+                        <select>
+                            <option value="" disabled selected>用户类别</option>
+                            <option value="1">普通成员</option>
+                            <option value="2">Leader</option>
+                        </select>
+                        <label>用户类别</label>
+                    </div>
+                </div>
+            </form>
+            <div id="acc_mod_modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>修改用户</h4>
+                    <div class="row">
+                        <div class="input-field col s12">
+                            <input id="acc_name_mod" type="text" class="validate">
+                            <label for="acc_name_mod">用户姓名</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <input id="acc_pas_mod" type="password" class="validate">
+                            <label for="acc_pas_mod">用户密码</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>用户类别</option>
+                                <option value="1">普通成员</option>
+                                <option value="2">Leader</option>
+                            </select>
+                            <label>用户类别</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                </div>
+            </div>
+            <div id="acc_look_modal1" class="modal bottom-sheet">
+                <div class="modal-content container">
+                    <h4>用户上机情况</h4>
+
+                    <table class="striped centered s12 m12 l12 ">
+                        <thead>
+                        <tr>
+                            <th data-field="lab_name">上机总时长</th>
+                            <th data-field="desk">上机总次数</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>22</td>
+                            <td>10</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <br/>
+                    <h5>详细信息</h5>
+                    <table class="striped centered   s12 m12 l12 ">
+                        <thead>
+                        <tr>
+                            <th data-field="lab_name">实验室名称</th>
+                            <th data-field="desk">实验室桌号</th>
+                            <th data-field="in">上线时间</th>
+                            <th data-field="out">下线时间</th>
+                        </tr>
+                        </thead>
+
+                        <tbody>
+                        <tr>
+                            <td>教室1</td>
+                            <td>66</td>
+                            <td>2018.03.31,09:00:00</td>
+                            <td>2018.03.31,11:00:00</td>
+                        </tr>
+                        <tr>
+                            <td>教室2</td>
+                            <td>23</td>
+                            <td>2018.03.31,09:00:00</td>
+                            <td>2018.03.31,11:00:00</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div class="row">
+                <div class="left-align col s6 m6 l6">
+                    <a class="modal-trigger waves-effect waves-light btn green" href="#acc_add_modal1">添加</a>
+                </div>
+                <div class="right-align col s6 m6 l6">
+                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
+                    <a class="waves-effect waves-light btn grey">重置</a>
+                </div>
+            </div>
+            <div id="acc_add_modal1" class="modal modal-fixed-footer">
+                <div class="modal-content">
+                    <h4>添加用户</h4>
+
+                    <div class="row">
+                        <div class="input-field col s12 ">
+                            <input id="acc_id_add" type="text" class="validate">
+                            <label for="acc_id_add">用户ID</label>
+                        </div>
+                        <div class="input-field col s12 ">
+                            <input id="acc_name_add" type="text" class="validate">
+                            <label for="acc_name">用户姓名</label>
+                        </div>
+                        <div class="input-field col s12 ">
+                            <input id="acc_pas_add" type="password" class="validate">
+                            <label for="acc_pas_add">用户密码</label>
+                        </div>
+                        <div class="input-field col s12 ">
+                            <input id="acc_tel_add" type="text" class="validate">
+                            <label for="acc_tel_add">用户联系方式</label>
+                        </div>
+                        <div class="input-field col s12">
+                            <select>
+                                <option value="" disabled selected>用户类别</option>
+                                <option value="1">普通成员</option>
+                                <option value="2">Leader</option>
+                            </select>
+                            <label>用户类别</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                </div>
+            </div>
+        </div>
+        <div class="home-table ">
+            <table class="striped centered   s12 m12 l12 ">
+                <thead>
+                <tr>
+                    <th data-field="id">ID</th>
+                    <th data-field="name">姓名</th>
+                    <th data-field="tel">联系方式</th>
+                    <th data-field="class">用户类别</th>
+                    <th data-field="look">操作</th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr>
+                    <td>31501110</td>
+                    <td>王芸琦</td>
+                    <td>18258846759</td>
+                    <td>Leader</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#acc_look_modal1">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#acc_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                <tr>
+                    <td>31501115</td>
+                    <td>护舒宝</td>
+                    <td>123</td>
+                    <td>Leader</td>
+                    <td>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#acc_look_modal1">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#acc_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
+                        </a>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <!--
+        44444444444444444444444444444444444444444444444444
+    -->
+    <!--<div id="any" class="col s12 container">
+
+    </div>-->
+</div>
+<script type="text/javascript " src="lib/jquery/jquery-3.3.1.js">
+</script>
+<script type="text/javascript " src="lib/materialize/js/materialize.js "></script>
+<script>
+    $(document).ready(function () {
+        M.AutoInit();
+        $('.modal').modal();
+        $('.sidenav').sidenav();
+
+    });
+
+    function confirmReset() {
+
+        var clickresult = false;
+
+        clickresult = window.confirm("点击后将删除该记录。\n你确认删除吗？ ");
+
+        return clickresult;
+
+    }
+</script>
+</body>
+
+</html>

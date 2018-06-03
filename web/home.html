@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<!--Import Google Icon Font-->
+		<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+		<!--Import materialize.css-->
+		<link type="text/css" rel="stylesheet" href="lib/materialize/css/materialize.min.css" media="screen,projection" />
+		<link type="text/css" rel="stylesheet" href="css/home.css" />
+		<!--Let browser know website is optimized for mobile-->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<meta charset="utf-8" />
+	</head>
+
+	<body>
+		<!-- Dropdown Structure -->
+		<div id="my_mod_modal" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>管理我的信息</h4>
+				<div class="row">
+					<div class="input-field col s12">
+						<input id="acc_name" type="text" class="validate">
+						<label for="acc_name">用户姓名</label>
+					</div>
+					<div class="input-field col s12">
+						<input id="acc_pas" type="password" class="validate">
+						<label for="acc_pas">用户密码</label>
+					</div>
+				</div>
+			</div>
+			<div class="modal-footer">
+				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+			</div>
+		</div>
+		<div id="my_group" class="modal modal-fixed-footer">
+			<div class="modal-content">
+				<h4>小组介绍</h4>
+				<div class="row">
+					<table class="striped centered s12 m12 l12 ">
+						<thead>
+							<tr>
+								<th data-field="name">组员</th>
+								<th data-field="id">学号</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>王芸琦</td>
+								<td>31501110</td>
+							</tr>
+							<tr>
+								<td>胡添策</td>
+								<td>31501115</td>
+							</tr>
+							<tr>
+								<td>陈禹彬</td>
+								<td>31501112</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<header>
+			<ul id="dropdown1" class="dropdown-content">
+				<li>
+					<a class="waves-effect waves-light modal-trigger" href="#my_mod_modal">管理我的</a>
+				</li>
+				<li class="divider"></li>
+				<li>
+					<a href="login.html">退出登录</a>
+				</li>
+			</ul>
+			<nav>
+				<div class="nav-wrapper">
+					<a href="#!" class="brand-logo">实验室管理系统</a>
+					<ul class="right hide-on-med-and-down">
+
+						<!-- Dropdown Trigger -->
+						<li>
+							<a class="dropdown-trigger" href="#" data-target="dropdown1">用户中心<i class="material-icons right">arrow_drop_down</i></a>
+						</li>
+						<li>
+							<a class="waves-effect waves-light modal-trigger" href="#my_group">信息</a>
+						</li>
+					</ul>
+				</div>
+
+			</nav>
+		</header>
+		<div class="nav">
+			<ul id="slide-out" class="sidenav sidenav-fixed">
+				<div class="row">
+					<div class="col s12 m12">
+						<div class="card brown lighten-1">
+							<div class="card-content white-text">
+								<span class="card-title">系统介绍</span>
+								<p>实验室管理系统，用于管理进入实验室的人员和计算机设备。</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<li class="no-padding">
+					<ul class="collapsible collapsible-accordion">
+						<li>
+							<a class="waves-effect homemain" href="#all">首页 管理中心<i class="Tiny material-icons">stars</i></a>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect">实验室管理<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li>
+										<a href="home2.html#lab" class="waves-effect">添加实验室</a>
+									</li>
+									<li>
+										<a href="home2.html#lab" class="waves-effect">查看实验室</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect">计算机管理<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li>
+										<a href="home2.html#com" class="waves-effect">添加实验室</a>
+									</li>
+									<li>
+										<a href="home2.html#com" class="waves-effect">查看实验室</a>
+									</li>
+								</ul>
+							</div>
+						</li>
+						<li>
+							<a class="collapsible-header waves-effect">用户管理<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li>
+										<a href="home2.html#acc" class="waves-effect">添加用户</a>
+									</li>
+									<li>
+										<a href="home2.html#acc" class="waves-effect">查看用户</a>
+									</li>
+								</ul>
+							</div>
+						<!--</li>
+						<li>
+							<a class="collapsible-header waves-effect">统计分析<i class="material-icons">arrow_drop_down</i></a>
+							<div class="collapsible-body">
+								<ul>
+									<li>
+										<a href="home2.html#any" class="waves-effect">学生分析</a>
+									</li>
+									<li>
+										<a href="home2.html#any" class="waves-effect">实验室分析</a>
+									</li>
+								</ul>
+							</div>
+						</li>-->
+					</ul>
+				</li>
+			</ul>
+			<a href="#" data-target="slide-out" class="sidenav-trigger button-collapse mianbao"><i class="medium material-icons">menu</i></a>
+		</div>
+		<div class="my-right">
+			<div id="all">
+				<nav class="daohang1">
+					<div class="daohang nav-wrapper">
+						<div class="col s12">
+							<a href="#!" class="breadcrumb">首页</a>
+						</div>
+					</div>
+				</nav>
+				<div class="row">
+					<div class="col s12 m4 l4 ">
+						<a href="home2.html#lab">
+							<div class="card  cyan lighten-5 ">
+								<div class="card-content ">
+									<span class="card-title">实验室管理</span>
+								</div>
+							</div>
+						</a>
+					</div>
+
+					<div class="col s12 m4 l4">
+						<a href="home2.html#com">
+							<div class="card  cyan lighten-5">
+								<div class="card-content">
+									<span class="card-title">计算机管理</span>
+								</div>
+							</div>
+						</a>
+					</div>
+					<div class="col s12 m4 l4">
+						<a href="home2.html#acc">
+							<div class="card  cyan lighten-5">
+								<div class="card-content">
+									<span class="card-title">用户管理</span>
+								</div>
+							</div>
+						</a>
+					</div>
+<!--
+					<div class="col s12 m6 l3">
+						<a href="home2.html#any">
+							<div class="card  cyan lighten-5">
+								<div class="card-content">
+									<span class="card-title">统计分析</span>
+								</div>
+							</div>
+						</a>
+					</div>-->
+				</div>
+
+				<div class="home-table">
+
+					<table class="striped centered   s12 m12 l12">
+						<thead>
+							<tr>
+								<th data-field="name">实验室</th>
+								<th data-field="loca">位置</th>
+								<th data-field="lead">联系人</th>
+								<th data-field="tel">联系方式</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr>
+								<td>教室1</td>
+								<td>理四218</td>
+								<td>蔡剑平</td>
+								<td>123456</td>
+							</tr>
+							<tr>
+								<td>教室2</td>
+								<td>理四218</td>
+								<td>蔡剑平</td>
+								<td>123456</td>
+							</tr>
+							<tr>
+								<td>教室3</td>
+								<td>理四218</td>
+								<td>蔡剑平</td>
+								<td>123456</td>
+							</tr>
+							<tr>
+								<td>教室3</td>
+								<td>理四218</td>
+								<td>蔡剑平</td>
+								<td>123456</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+		<script type="text/javascript" src="lib/jquery/jquery-3.3.1.js">
+		</script>
+		<script type="text/javascript" src="lib/materialize/js/materialize.js"></script>
+		<script>
+            $(document).ready(function(){
+                M.AutoInit();
+                $('.modal').modal();
+                $('.dropdown-trigger').dropdown();
+                $('.sidenav').sidenav();
+            });
+
+		</script>
+	</body>
+
+</html>

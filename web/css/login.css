@@ -1,10 +1,7 @@
 .form {
 	background: rgba(255, 255, 255, 0.2);
 }
-
-
 /*阴影*/
-
 
 input[type="text"],
 input[type="password"] {
@@ -15,7 +12,4 @@ input[type="password"] {
 	color: whitesmoke;
 	font-weight: 600;
 	text-align: center;
-}
-button[type="submit"]{
-	
 }

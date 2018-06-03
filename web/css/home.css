@@ -1,0 +1,77 @@
+body{
+	min-width: 400px;
+}
+.my-right{
+	padding-top: 10px;
+	padding-left: 300px;
+	width: 98%;
+	margin: 0 auto;
+}
+.my-right .card{
+	height: 130px;
+}
+.my-right .card .card-title{
+	font-size: 25px;
+	font-weight: 600;
+	color: #006064  ;
+}
+header,
+footer {
+	padding-left: 300px;
+}
+
+@media only screen and (max-width: 992px) {
+	header,
+	footer {
+		padding-left: 0;
+	}
+	.my-right{
+		padding-left: 0;
+	}
+}
+.mianbao{
+	position: absolute;
+	color: #ffffff ;
+	margin-top: -56px;
+}
+.brand-logo{
+	left: 5%;
+}
+.hide-on-med-and-down{
+	margin-right: 5%;
+}
+nav ul a{
+	font-size: 1.15em;
+}
+.nav-wrapper{
+	background-color: #00bcd4 ;
+}
+#dropdown1 li>a{
+	color: #00bcd4 ;
+}
+#slide-out{
+	background-color: #d7ccc8  ;
+}
+#slide-out a{
+	font-weight: 600;
+}
+.side-nav .collapsible-body, .side-nav.fixed .collapsible-body{
+	background-color: #efebe9   ;
+}
+.collapsible li{
+	border-bottom: 2px dotted #ffffff;
+}
+.daohang{
+	padding-left: 5%;
+}
+nav .daohang{
+	height: 40px;
+}
+.daohang1{
+	height: 40px;
+	line-height: 40px;
+	background-color: #00bcd4  ;
+	margin-bottom: 20px;
+	opacity: 0.4;
+}
+
