@@ -1,8 +1,9 @@
-package com.groupone.model;
+package com.groupone.DAO;
 
+import com.groupone.model.LabEntity;
+import com.groupone.model.UserEntity;
 import com.groupone.servlet.MyListener;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
@@ -10,13 +11,12 @@ import java.util.List;
 
 
 public class UserDAO {
-    private static SessionFactory sessionFactory = MyListener.sessionFactory;
     private Session session;
 
 
     public void getSession(){
         if(session == null){
-            this.session=sessionFactory.openSession();
+            this.session=MyListener.sessionFactory.openSession();
         }
     }
     public synchronized UserEntity getUserByUserId(String userId){

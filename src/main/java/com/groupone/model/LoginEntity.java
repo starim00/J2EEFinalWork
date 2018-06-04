@@ -9,7 +9,7 @@ public class LoginEntity {
     private String userId;
     private long inTime;
     private long outTime;
-    private ComputerEntity computerByComputerId;
+    private int computerId;
 
     @Id
     @Column(name = "loginID", nullable = false)
@@ -51,6 +51,12 @@ public class LoginEntity {
         this.outTime = outTime;
     }
 
+    @Basic
+    @Column(name = "computerID",nullable = false)
+    public int getComputerId(){return computerId;}
+
+    public void setComputerId(int computerId){this.computerId = computerId;}
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -75,13 +81,4 @@ public class LoginEntity {
         return result;
     }
 
-    @ManyToOne
-    @JoinColumn(name = "computerID", referencedColumnName = "computerID", nullable = false)
-    public ComputerEntity getComputerByComputerId() {
-        return computerByComputerId;
-    }
-
-    public void setComputerByComputerId(ComputerEntity computerByComputerId) {
-        this.computerByComputerId = computerByComputerId;
-    }
 }

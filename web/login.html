@@ -5,6 +5,7 @@
     <title>login</title>
 
     <script src="lib/jquery/jquery-3.3.1.js"></script>
+    <script src="lib/jquery/jquery-cookie.js"></script>
     <link href="lib/materialize/css/materialize.css" rel="stylesheet">
     <script src="lib/materialize/js/materialize.js"></script>
     <link rel="stylesheet" href="css/login.css">
@@ -86,15 +87,16 @@
     }
 
     function dologin(data) {
-        data = $.parseJSON(data);
+        let jsonData = $.parseJSON(data);
         console.log(data);
-        if (data["state"] == 0) {
+        if (jsonData["state"] == 0) {
             document.getElementById("err").setAttribute("data-error","用户名密码错误");
             document.getElementById("login").password.setAttribute("class", "validate invalid");
             document.getElementById("login").username.setAttribute("class", "validate")
             return false;
         }
         else {
+            $.cookie('loginCookie',data,{path:'/'});
             location.href = "logined";
             return true;
         }

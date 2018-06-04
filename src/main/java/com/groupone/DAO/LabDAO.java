@@ -1,19 +1,18 @@
-package com.groupone.model;
+package com.groupone.DAO;
 
+import com.groupone.model.LabEntity;
 import com.groupone.servlet.MyListener;
 import org.hibernate.Session;
-import org.hibernate.SessionFactory;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 
 import java.util.List;
 
 public class LabDAO {
-    private static SessionFactory sessionFactory = MyListener.sessionFactory;
     private Session session;
     public void getSession(){
         if(session==null){
-            session=sessionFactory.openSession();
+            session=MyListener.sessionFactory.openSession();
         }
     }
     public synchronized List<LabEntity> loadAllLab(){
@@ -45,7 +44,7 @@ public class LabDAO {
         return true;
     }
     public synchronized List<LabEntity> searchLab(LabEntity labEntity){
-        String hql = "";
+        String hql;
         getSession();
         Query query;
         if(labEntity.getSafeLevel()!=-1&&labEntity.getLocation()!=-1){

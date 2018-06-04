@@ -13,7 +13,7 @@
     </servlet-mapping>
     <servlet>
         <servlet-name>logined</servlet-name>
-        <servlet-class>com.groupone.servlet.loginedServlet</servlet-class>
+        <servlet-class>com.groupone.servlet.LoginedServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>logined</servlet-name>

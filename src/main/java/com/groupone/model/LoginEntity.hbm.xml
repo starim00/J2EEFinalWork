@@ -17,8 +17,8 @@
         <property name="outTime">
             <column name="outTime" sql-type="bigint(20)"/>
         </property>
-        <many-to-one name="computerByComputerId" class="com.groupone.model.ComputerEntity">
-            <column name="computerID"/>
-        </many-to-one>
+        <property name="computerId">
+            <column name="computerID" sql-type="int(11)"/>
+        </property>
     </class>
 </hibernate-mapping>
