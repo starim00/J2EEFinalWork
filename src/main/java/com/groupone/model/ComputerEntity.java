@@ -3,7 +3,7 @@ package com.groupone.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "computer", schema = "j2ee", catalog = "")
+@Table(name = "computer", schema = "j2ee")
 public class ComputerEntity {
     private int computerId;
     private String ipAddress;
