@@ -20,14 +20,5 @@
         <property name="safeLevel">
             <column name="safeLevel" sql-type="int(11)"/>
         </property>
-        <many-to-one name="userByLabLeader" class="com.groupone.model.UserEntity">
-            <column name="labLeader" not-null="true"/>
-        </many-to-one>
-        <set name="computersByLabId" inverse="true">
-            <key>
-                <column name="labID"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.groupone.model.ComputerEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

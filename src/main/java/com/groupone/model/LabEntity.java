@@ -1,18 +1,15 @@
 package com.groupone.model;
 
 import javax.persistence.*;
-import java.util.Collection;
 
 @Entity
-@Table(name = "lab", schema = "j2ee")
+@Table(name = "lab", schema = "j2ee", catalog = "")
 public class LabEntity {
     private int labId;
     private String labName;
     private String labLeader;
     private int location;
     private int safeLevel;
-    private Collection<ComputerEntity> computersByLabId;
-    private UserEntity userByLabLeader;
 
     @Id
     @Column(name = "labID", nullable = false)
@@ -88,24 +85,5 @@ public class LabEntity {
         result = 31 * result + location;
         result = 31 * result + safeLevel;
         return result;
-    }
-
-    @OneToMany(mappedBy = "labByLabId")
-    public Collection<ComputerEntity> getComputersByLabId() {
-        return computersByLabId;
-    }
-
-    public void setComputersByLabId(Collection<ComputerEntity> computersByLabId) {
-        this.computersByLabId = computersByLabId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "labLeader", referencedColumnName = "userID")
-    public UserEntity getUserByLabLeader() {
-        return userByLabLeader;
-    }
-
-    public void setUserByLabLeader(UserEntity userByLabLeader) {
-        this.userByLabLeader = userByLabLeader;
     }
 }

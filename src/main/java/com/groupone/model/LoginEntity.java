@@ -3,15 +3,13 @@ package com.groupone.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "login", schema = "j2ee")
+@Table(name = "login", schema = "j2ee", catalog = "")
 public class LoginEntity {
     private int loginId;
-    private int computerId;
     private String userId;
     private long inTime;
     private long outTime;
     private ComputerEntity computerByComputerId;
-    private UserEntity userByUserId;
 
     @Id
     @Column(name = "loginID", nullable = false)
@@ -21,16 +19,6 @@ public class LoginEntity {
 
     public void setLoginId(int loginId) {
         this.loginId = loginId;
-    }
-
-    @Basic
-    @Column(name = "computerID", nullable = false)
-    public int getComputerId() {
-        return computerId;
-    }
-
-    public void setComputerId(int computerId) {
-        this.computerId = computerId;
     }
 
     @Basic
@@ -71,7 +59,6 @@ public class LoginEntity {
         LoginEntity that = (LoginEntity) o;
 
         if (loginId != that.loginId) return false;
-        if (computerId != that.computerId) return false;
         if (inTime != that.inTime) return false;
         if (outTime != that.outTime) return false;
         if (userId != null ? !userId.equals(that.userId) : that.userId != null) return false;
@@ -82,7 +69,6 @@ public class LoginEntity {
     @Override
     public int hashCode() {
         int result = loginId;
-        result = 31 * result + computerId;
         result = 31 * result + (userId != null ? userId.hashCode() : 0);
         result = 31 * result + (int) (inTime ^ (inTime >>> 32));
         result = 31 * result + (int) (outTime ^ (outTime >>> 32));
@@ -97,15 +83,5 @@ public class LoginEntity {
 
     public void setComputerByComputerId(ComputerEntity computerByComputerId) {
         this.computerByComputerId = computerByComputerId;
-    }
-
-    @ManyToOne
-    @JoinColumn(name = "userID", referencedColumnName = "userID", nullable = false)
-    public UserEntity getUserByUserId() {
-        return userByUserId;
-    }
-
-    public void setUserByUserId(UserEntity userByUserId) {
-        this.userByUserId = userByUserId;
     }
 }

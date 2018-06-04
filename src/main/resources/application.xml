@@ -6,5 +6,20 @@
         <property name="configLocation">
             <value>classpath:hibernate.cfg.xml</value>
         </property>
+        <property name="annotatedClasses">
+            <list>
+                <value>com.groupone.model.AdminEntity</value>
+                <value>com.groupone.model.ComputerEntity</value>
+                <value>com.groupone.model.LabEntity</value>
+                <value>com.groupone.model.LoginEntity</value>
+                <value>com.groupone.model.UserEntity</value>
+            </list>
+        </property>
+        <property name="hibernateProperties">
+            <props>
+                <prop key="hibernate.connection.url">jdbc:mysql://120.79.154.14:3306/j2ee</prop>
+                <prop key="hibernate.connection.driver_class">com.mysql.jdbc.Driver</prop>
+            </props>
+        </property>
     </bean>
 </beans>

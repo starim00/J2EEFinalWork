@@ -17,14 +17,5 @@
         <property name="labId">
             <column name="labID" sql-type="int(11)"/>
         </property>
-        <many-to-one name="labByLabId" class="com.groupone.model.LabEntity">
-            <column name="labID"/>
-        </many-to-one>
-        <set name="loginsByComputerId" inverse="true">
-            <key>
-                <column name="computerID"/>
-            </key>
-            <one-to-many not-found="ignore" class="com.groupone.model.LoginEntity"/>
-        </set>
     </class>
 </hibernate-mapping>

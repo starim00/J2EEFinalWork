@@ -3,7 +3,7 @@ package com.groupone.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "admin", schema = "j2ee")
+@Table(name = "admin", schema = "j2ee", catalog = "")
 public class AdminEntity {
     private String adminId;
     private String password;
