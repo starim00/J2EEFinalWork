@@ -282,8 +282,8 @@
                     <td>理四218</td>
                     <td>B</td>
                     <td>
-                        <a class="waves-effect waves-light btn indigo" href="#lab_look_modal">查看</a>
-                        <a class="waves-effect waves-light btn purple" href="#lab_mod_modal1">修改</a>
+                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#lab_look_modal">查看</a>
+                        <a class="waves-effect waves-light btn purple modal-trigger" href="#lab_mod_modal1">修改</a>
                         <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
                         </a>
                     </td>
@@ -474,19 +474,15 @@
         <div class="row">
             <form class="col s12">
                 <div class="row">
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col s12 m4">
                         <input id="acc_id" type="text" class="validate">
                         <label for="acc_id">用户ID</label>
                     </div>
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col s12 m4">
                         <input id="acc_name" type="text" class="validate">
                         <label for="acc_name">用户姓名</label>
                     </div>
-                    <div class="input-field col s12 m6 l3">
-                        <input id="acc_pas" type="password" class="validate">
-                        <label for="acc_pas">用户密码</label>
-                    </div>
-                    <div class="input-field col s12 m6 l3">
+                    <div class="input-field col s12 m4">
                         <select>
                             <option value="" disabled selected>用户类别</option>
                             <option value="1">普通成员</option>

@@ -5,8 +5,26 @@
 <hibernate-mapping>
 
     <class name="com.groupone.model.ComputerEntity" table="computer" schema="j2ee">
-        <id name="computerId" column="computerID"/>
-        <property name="ipAddress" column="IPAddress"/>
-        <property name="location" column="location"/>
+        <id name="computerId">
+            <column name="computerID" sql-type="int(11)"/>
+        </id>
+        <property name="ipAddress">
+            <column name="IPAddress" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="location">
+            <column name="location" sql-type="int(11)"/>
+        </property>
+        <property name="labId">
+            <column name="labID" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="labByLabId" class="com.groupone.model.LabEntity">
+            <column name="labID"/>
+        </many-to-one>
+        <set name="loginsByComputerId" inverse="true">
+            <key>
+                <column name="computerID"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.groupone.model.LoginEntity"/>
+        </set>
     </class>
 </hibernate-mapping>

@@ -44,11 +44,39 @@ public class LabDAO {
         }
         return true;
     }
-    public synchronized List<LabEntity> searchLabByLabName(String labName){
-        String hql = "from LabEntity where labName like :labName";
+    public synchronized List<LabEntity> searchLab(LabEntity labEntity){
+        String hql = "";
         getSession();
-        Query query = session.createQuery(hql);
-        query.setParameter("labName","%"+labName+"%");
+        Query query;
+        if(labEntity.getSafeLevel()!=-1&&labEntity.getLocation()!=-1){
+            hql = "from LabEntity where labName like :labName and labLeader like :labLeader and location = :location and safeLevel = :safeLevel";
+            query = session.createQuery(hql);
+            query.setParameter("labName","%"+labEntity.getLabName()+"%");
+            query.setParameter("labLeader","%"+labEntity.getLabLeader()+"%");
+            query.setParameter("location",labEntity.getLocation());
+            query.setParameter("safeLevel",labEntity.getSafeLevel());
+        }
+        else if(labEntity.getLocation()!=-1){
+            hql = "from LabEntity where labName like :labName and labLeader like :labLeader and location = :location";
+            query = session.createQuery(hql);
+            query.setParameter("labName","%"+labEntity.getLabName()+"%");
+            query.setParameter("labLeader","%"+labEntity.getLabLeader()+"%");
+            query.setParameter("location",labEntity.getLocation());
+        }
+        else if(labEntity.getSafeLevel()!=-1){
+            hql = "from LabEntity where labName like :labName and labLeader like :labLeader and safeLevel = :safeLevel";
+            query = session.createQuery(hql);
+            query.setParameter("labName","%"+labEntity.getLabName()+"%");
+            query.setParameter("labLeader","%"+labEntity.getLabLeader()+"%");
+            query.setParameter("safeLevel",labEntity.getSafeLevel());
+        }
+        else{
+            hql="from LabEntity where labName like :labName and labLeader like :labLeader ";
+            query = session.createQuery(hql);
+            query.setParameter("labName","%"+labEntity.getLabName()+"%");
+            query.setParameter("labLeader","%"+labEntity.getLabLeader()+"%");
+
+        }
         List<LabEntity> result = query.list();
         session.close();
         return result;

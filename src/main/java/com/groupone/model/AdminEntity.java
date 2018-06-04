@@ -9,7 +9,7 @@ public class AdminEntity {
     private String password;
 
     @Id
-    @Column(name = "adminID")
+    @Column(name = "adminID", nullable = false, length = 255)
     public String getAdminId() {
         return adminId;
     }
@@ -19,7 +19,7 @@ public class AdminEntity {
     }
 
     @Basic
-    @Column(name = "password")
+    @Column(name = "password", nullable = false, length = 255)
     public String getPassword() {
         return password;
     }

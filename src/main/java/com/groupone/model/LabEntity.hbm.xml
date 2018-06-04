@@ -5,9 +5,29 @@
 <hibernate-mapping>
 
     <class name="com.groupone.model.LabEntity" table="lab" schema="j2ee">
-        <id name="labId" column="labID"/>
-        <property name="labName" column="labName"/>
-        <property name="location" column="location"/>
-        <property name="safeLevel" column="safeLevel"/>
+        <id name="labId">
+            <column name="labID" sql-type="int(11)"/>
+        </id>
+        <property name="labName">
+            <column name="labName" sql-type="varchar(255)"/>
+        </property>
+        <property name="labLeader">
+            <column name="labLeader" sql-type="varchar(255)" not-null="true"/>
+        </property>
+        <property name="location">
+            <column name="location" sql-type="int(11)"/>
+        </property>
+        <property name="safeLevel">
+            <column name="safeLevel" sql-type="int(11)"/>
+        </property>
+        <many-to-one name="userByLabLeader" class="com.groupone.model.UserEntity">
+            <column name="labLeader" not-null="true"/>
+        </many-to-one>
+        <set name="computersByLabId" inverse="true">
+            <key>
+                <column name="labID"/>
+            </key>
+            <one-to-many not-found="ignore" class="com.groupone.model.ComputerEntity"/>
+        </set>
     </class>
 </hibernate-mapping>

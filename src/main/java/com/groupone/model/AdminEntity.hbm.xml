@@ -5,7 +5,11 @@
 <hibernate-mapping>
 
     <class name="com.groupone.model.AdminEntity" table="admin" schema="j2ee">
-        <id name="adminId" column="adminID"/>
-        <property name="password" column="password"/>
+        <id name="adminId">
+            <column name="adminID" sql-type="varchar(255)"/>
+        </id>
+        <property name="password">
+            <column name="password" sql-type="varchar(255)"/>
+        </property>
     </class>
 </hibernate-mapping>

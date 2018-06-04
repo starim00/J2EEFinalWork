@@ -1,6 +1,7 @@
 package com.groupone.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "j2ee")
@@ -9,9 +10,12 @@ public class UserEntity {
     private String userName;
     private String passwd;
     private Integer tel;
+    private Integer userType;
+    private Collection<LabEntity> labsByUserId;
+    private Collection<LoginEntity> loginsByUserId;
 
     @Id
-    @Column(name = "userID")
+    @Column(name = "userID", nullable = false, length = 255)
     public String getUserId() {
         return userId;
     }
@@ -21,7 +25,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "userName")
+    @Column(name = "userName", nullable = false, length = 255)
     public String getUserName() {
         return userName;
     }
@@ -31,7 +35,7 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "passwd")
+    @Column(name = "passwd", nullable = false, length = 255)
     public String getPasswd() {
         return passwd;
     }
@@ -41,13 +45,23 @@ public class UserEntity {
     }
 
     @Basic
-    @Column(name = "tel")
+    @Column(name = "tel", nullable = true)
     public Integer getTel() {
         return tel;
     }
 
     public void setTel(Integer tel) {
         this.tel = tel;
+    }
+
+    @Basic
+    @Column(name = "userType", nullable = true)
+    public Integer getUserType() {
+        return userType;
+    }
+
+    public void setUserType(Integer userType) {
+        this.userType = userType;
     }
 
     @Override
@@ -61,6 +75,7 @@ public class UserEntity {
         if (userName != null ? !userName.equals(that.userName) : that.userName != null) return false;
         if (passwd != null ? !passwd.equals(that.passwd) : that.passwd != null) return false;
         if (tel != null ? !tel.equals(that.tel) : that.tel != null) return false;
+        if (userType != null ? !userType.equals(that.userType) : that.userType != null) return false;
 
         return true;
     }
@@ -71,6 +86,25 @@ public class UserEntity {
         result = 31 * result + (userName != null ? userName.hashCode() : 0);
         result = 31 * result + (passwd != null ? passwd.hashCode() : 0);
         result = 31 * result + (tel != null ? tel.hashCode() : 0);
+        result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByLabLeader")
+    public Collection<LabEntity> getLabsByUserId() {
+        return labsByUserId;
+    }
+
+    public void setLabsByUserId(Collection<LabEntity> labsByUserId) {
+        this.labsByUserId = labsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<LoginEntity> getLoginsByUserId() {
+        return loginsByUserId;
+    }
+
+    public void setLoginsByUserId(Collection<LoginEntity> loginsByUserId) {
+        this.loginsByUserId = loginsByUserId;
     }
 }

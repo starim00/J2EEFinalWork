@@ -5,8 +5,26 @@
 <hibernate-mapping>
 
     <class name="com.groupone.model.LoginEntity" table="login" schema="j2ee">
-        <id name="loginId" column="loginID"/>
-        <property name="inTime" column="inTime"/>
-        <property name="outTime" column="outTime"/>
+        <id name="loginId">
+            <column name="loginID" sql-type="int(11)"/>
+        </id>
+        <property name="computerId">
+            <column name="computerID" sql-type="int(11)"/>
+        </property>
+        <property name="userId">
+            <column name="userID" sql-type="varchar(255)"/>
+        </property>
+        <property name="inTime">
+            <column name="inTime" sql-type="bigint(20)"/>
+        </property>
+        <property name="outTime">
+            <column name="outTime" sql-type="bigint(20)"/>
+        </property>
+        <many-to-one name="computerByComputerId" class="com.groupone.model.ComputerEntity">
+            <column name="computerID"/>
+        </many-to-one>
+        <many-to-one name="userByUserId" class="com.groupone.model.UserEntity">
+            <column name="userID"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>
