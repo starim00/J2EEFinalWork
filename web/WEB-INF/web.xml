@@ -23,6 +23,6 @@
         <listener-class>com.groupone.servlet.MyListener</listener-class>
     </listener>
     <welcome-file-list>
-        <welcome-file>login.html</welcome-file>
+        <welcome-file>index.html</welcome-file>
     </welcome-file-list>
 </web-app>

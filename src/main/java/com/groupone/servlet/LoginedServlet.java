@@ -3,7 +3,6 @@ package com.groupone.servlet;
 import com.google.gson.Gson;
 
 import javax.servlet.ServletException;
-import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -20,9 +19,8 @@ public class LoginedServlet extends HttpServlet {
                 break;
             }
         }
-        Gson gson = new Gson();
         if(cookie==null){
-            response.sendRedirect("/login.html");
+            response.sendRedirect("/index.html");
         }
         response.addCookie(new Cookie("loginCookie",cookie.getValue()));
         response.sendRedirect("/home.html");

@@ -13,16 +13,16 @@ import java.io.IOException;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
-
+    private UserDAO userDAO = (UserDAO)MyListener.applicationContext.getBean("userDAO");
+    private AdminDAO adminDAO = (AdminDAO)MyListener.applicationContext.getBean("adminDAO");
+    private LabDAO labDAO = (LabDAO)MyListener.applicationContext.getBean("labDAO");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        UserDAO userDAO = new UserDAO();
-        AdminDAO adminDAO = new AdminDAO();
-        LabDAO labDAO = new LabDAO();
         response.setHeader("Access-Control-Allow-Origin", "*");
+        response.setHeader("Access-Control-Allow-Methods", "POST, GET");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String result="";
-        AdminEntity admin = adminDAO.getAdminById(username);
+        AdminEntity admin = adminDAO.getAdminById(username,username);
         if(admin!=null&&admin.getPassword().equals(password)){
             result="{\"state\":3}";
         }
@@ -35,7 +35,7 @@ public class LoginServlet extends HttpServlet {
             if(!temp.isEmpty()) {
                 for (int i = 0; i < temp.size(); i++) {
                     if (temp.get(i).getLabLeader().equals(username)) {
-                        result = "{\"state\":2}";
+                        result = "{\"state\":1}";
                         break;
                     }
                 }

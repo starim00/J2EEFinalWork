@@ -5,79 +5,69 @@ import com.groupone.servlet.MyListener;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-public class LoginDAO {
+@Repository("loginDAO")
+public class LoginDAO implements ILoginDAO {
     private Session session;
-    public void getSession(){
-        if(session==null){
-            session=MyListener.sessionFactory.openSession();
+
+    public void getSession() {
+        if (session == null) {
+            session = MyListener.sessionFactory.openSession();
         }
     }
-    public synchronized List<LoginEntity> loadAllLogin(){
+
+    public synchronized List<LoginEntity> loadAllLogin() {
         String hql = "from LoginEntity ";
         getSession();
         List<LoginEntity> result = session.createQuery(hql).list();
         session.close();
         return result;
     }
+
+    @Transactional(rollbackFor = Exception.class)
     public synchronized boolean deleteLogin(int loginId) throws Exception {
         getSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.getTransaction();
-            LoginEntity login = session.get(LoginEntity.class,loginId);
-            if(login == null){
-                throw new Exception("记录不存在");
-            }
-            session.delete(login);
-            transaction.commit();
-        }catch (Exception e){
-            if(transaction!=null){
-                transaction.rollback();
-            }
+        LoginEntity login = session.get(LoginEntity.class, loginId);
+        if (login == null) {
+            throw new Exception("记录不存在");
         }
-        finally {
-            session.close();
-        }
+        session.delete(login);
+        session.close();
         return true;
     }
-    public synchronized List<LoginEntity> searchLoginByComputerId(int computerId){
+
+    public synchronized List<LoginEntity> searchLoginByComputerId(int computerId) {
         getSession();
         List<LoginEntity> result;
-            String hql = "from LoginEntity where computerId  = :computerId";
-            Query query = session.createQuery(hql);
-            query.setParameter("computerId",computerId);
-            result = query.list();
+        String hql = "from LoginEntity where computerId  = :computerId";
+        Query query = session.createQuery(hql);
+        query.setParameter("computerId", computerId);
+        result = query.list();
         return result;
     }
 
-    public synchronized List<LoginEntity> searchLoginByUserId(int userId){
+    public synchronized List<LoginEntity> searchLoginByUserId(int userId) {
         getSession();
         List<LoginEntity> result;
         String hql = "from LoginEntity where userId  = :userId";
         Query query = session.createQuery(hql);
-        query.setParameter("userId",userId);
+        query.setParameter("userId", userId);
         result = query.list();
         return result;
     }
-    public synchronized boolean insertLogin(LoginEntity loginEntity){
+
+    @Transactional(rollbackFor = Exception.class)
+    public synchronized boolean insertLogin(LoginEntity loginEntity) {
         getSession();
         Transaction transaction = null;
-        try {
-            transaction = session.getTransaction();
-            session.save(loginEntity);
-            transaction.commit();
-        }
-        catch (Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-        }
-        finally {
-            session.close();
-        }
+        transaction = session.getTransaction();
+        session.save(loginEntity);
+        transaction.commit();
+        session.close();
         return true;
     }
 

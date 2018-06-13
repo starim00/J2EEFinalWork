@@ -4,111 +4,85 @@ import com.groupone.model.LabEntity;
 import com.groupone.model.UserEntity;
 import com.groupone.servlet.MyListener;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
+import org.springframework.stereotype.Repository;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-
-public class UserDAO {
+@Repository("userDAO")
+public class UserDAO implements IUserDAO {
     private Session session;
 
 
-    public void getSession(){
-        if(session == null){
-            this.session=MyListener.sessionFactory.openSession();
+    public void getSession() {
+        if (session == null) {
+            this.session = MyListener.sessionFactory.openSession();
         }
     }
-    public synchronized UserEntity getUserByUserId(String userId){
+
+    public synchronized UserEntity getUserByUserId(String userId) {
         getSession();
-        UserEntity user = session.get(UserEntity.class,userId);
+        UserEntity user = session.get(UserEntity.class, userId);
         session.close();
         return user;
     }
-    public synchronized List<UserEntity> loadAllUser(){
+
+    public synchronized List<UserEntity> loadAllUser() {
         String hql = "from UserEntity ";
         getSession();
         List<UserEntity> result = session.createQuery(hql).list();
         session.close();
         return result;
     }
-    public synchronized boolean deleteUser(int userId) throws Exception {
+
+    @Transactional(rollbackFor = Exception.class)
+    public synchronized boolean deleteUser(String username,int userId) throws Exception {
         getSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.getTransaction();
-            UserEntity user = session.get(UserEntity.class,userId);
-            if(user == null){
-                throw new Exception("实验室不存在");
-            }
-            session.delete(user);
-            transaction.commit();
-        }catch (Exception e){
-            if(transaction!=null){
-                transaction.rollback();
-            }
+        UserEntity user = session.get(UserEntity.class, userId);
+        if (user == null) {
+            throw new Exception("实验室不存在");
         }
-        finally {
-            session.close();
-        }
+        session.delete(user);
+        session.close();
         return true;
     }
-    public synchronized boolean modifyUser(UserEntity userEntity){
+
+    @Transactional(rollbackFor = Exception.class)
+    public synchronized boolean modifyUser(String username,UserEntity userEntity) throws Exception {
         getSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.getTransaction();
-            LabEntity lab = session.get(LabEntity.class,userEntity.getUserId());
-            if(lab==null){
-                throw new Exception("用户不存在");
-            }
-            session.update(userEntity);
-            transaction.commit();
+        LabEntity lab = session.get(LabEntity.class, userEntity.getUserId());
+        if (lab == null) {
+            throw new Exception("用户不存在");
         }
-        catch (Exception e){
-            if(transaction !=null){
-                transaction.rollback();
-            }
-        }
-        finally {
-            session.close();
-        }
+        session.update(userEntity);
+        session.close();
         return true;
     }
-    public synchronized boolean insertUser(UserEntity userEntity){
+
+    @Transactional(rollbackFor = Exception.class)
+    public synchronized boolean insertUser(String username,UserEntity userEntity) {
         getSession();
-        Transaction transaction = null;
-        try {
-            transaction = session.getTransaction();
-            session.save(userEntity);
-            transaction.commit();
-        }
-        catch (Exception e){
-            if(transaction != null){
-                transaction.rollback();
-            }
-        }
-        finally {
-            session.close();
-        }
+        session.save(userEntity);
+        session.close();
         return true;
     }
-    public synchronized List<UserEntity> searchUser(UserEntity userEntity){
+
+    public synchronized List<UserEntity> searchUser(UserEntity userEntity) {
         String hql = "";
         getSession();
         Query query;
-        if(userEntity.getUserType()!=-1){
+        if (userEntity.getUserType() != -1) {
             hql = "from UserEntity where userId like :userId and userName like :userName and userType = :userType";
             query = session.createQuery(hql);
-            query.setParameter("userId","%"+userEntity.getUserId()+"%");
-            query.setParameter("userName","%"+userEntity.getUserName()+"%");
-            query.setParameter("userType",userEntity.getUserType());
-        }
-        else{
-            hql="from UserEntity where userId like :userId and userName like :userName";
+            query.setParameter("userId", "%" + userEntity.getUserId() + "%");
+            query.setParameter("userName", "%" + userEntity.getUserName() + "%");
+            query.setParameter("userType", userEntity.getUserType());
+        } else {
+            hql = "from UserEntity where userId like :userId and userName like :userName";
             query = session.createQuery(hql);
-            query.setParameter("userId","%"+userEntity.getUserId()+"%");
-            query.setParameter("userName","%"+userEntity.getUserName()+"%");
+            query.setParameter("userId", "%" + userEntity.getUserId() + "%");
+            query.setParameter("userName", "%" + userEntity.getUserName() + "%");
 
         }
         List<UserEntity> result = query.list();

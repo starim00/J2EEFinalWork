@@ -92,11 +92,11 @@
         if (jsonData["state"] == 0) {
             document.getElementById("err").setAttribute("data-error","用户名密码错误");
             document.getElementById("login").password.setAttribute("class", "validate invalid");
-            document.getElementById("login").username.setAttribute("class", "validate")
+            document.getElementById("login").username.setAttribute("class", "validate");
             return false;
         }
         else {
-            $.cookie('loginCookie',data,{path:'/'});
+            $.cookie('loginCookie',{username: $("#username").val(), password: $("#password").val()},{path:'/'});
             location.href = "logined";
             return true;
         }
@@ -104,7 +104,7 @@
 
     $(document).ready(function () {
         M.AutoInit();
-    })
+    });
     let max_particles = 100;
     let particles = [];
     let frequency = 100;
@@ -115,35 +115,35 @@
     // Enable repopolate
     setTimeout(function () {
         time_to_recreate = true;
-    }.bind(this), max_time)
+    }.bind(this), max_time);
 
     // Popolate particles
     popolate(max_particles);
 
-    var tela = document.createElement('canvas');
+    let tela = document.createElement('canvas');
     tela.width = $(window).width();
     tela.height = $(window).height();
     $("body").append(tela);
 
-    var canvas = tela.getContext('2d');
+    let canvas = tela.getContext('2d');
 
     class Particle {
         constructor(canvas, options) {
             //let colors = ["#feea00", "#a9df85", "#5dc0ad", "#ff9a00", "#fa3f20"]
-            let colors = ["#00416D", "#52BDF2", "#2D7DBC", "#75D4F2", "#82AFF9"]
-            let types = ["full", "fill", "empty"]
-            this.random = Math.random()
+            let colors = ["#00416D", "#52BDF2", "#2D7DBC", "#75D4F2", "#82AFF9"];
+            let types = ["full", "fill", "empty"];
+            this.random = Math.random();
             this.canvas = canvas;
             this.progress = 0;
 
-            this.x = ($(window).width() / 2) + (Math.random() * 200 - Math.random() * 200)
-            this.y = ($(window).height() / 2) + (Math.random() * 200 - Math.random() * 200)
-            this.w = $(window).width()
-            this.h = $(window).height()
-            this.radius = 1 + (8 * this.random)
+            this.x = ($(window).width() / 2) + (Math.random() * 200 - Math.random() * 200);
+            this.y = ($(window).height() / 2) + (Math.random() * 200 - Math.random() * 200);
+            this.w = $(window).width();
+            this.h = $(window).height();
+            this.radius = 1 + (8 * this.random);
             this.type = types[this.randomIntFromInterval(0, types.length - 1)];
             this.color = colors[this.randomIntFromInterval(0, colors.length - 1)];
-            this.a = 0
+            this.a = 0;
             this.s = (this.radius + (Math.random() * 1)) / 10;
             //this.s = 12 //Math.random() * 1;
         }
@@ -165,14 +165,14 @@
             let color = this.color;
             switch (this.type) {
                 case "full":
-                    this.createArcFill(this.radius, color)
-                    this.createArcEmpty(this.radius + lineWidth, lineWidth / 2, color)
+                    this.createArcFill(this.radius, color);
+                    this.createArcEmpty(this.radius + lineWidth, lineWidth / 2, color);
                     break;
                 case "fill":
-                    this.createArcFill(this.radius, color)
+                    this.createArcFill(this.radius, color);
                     break;
                 case "empty":
-                    this.createArcEmpty(this.radius, lineWidth, color)
+                    this.createArcEmpty(this.radius, lineWidth, color);
                     break;
             }
         }
@@ -207,7 +207,7 @@
             if (this.y < 0 || this.y > this.h - this.radius) {
                 return false
             }
-            this.render()
+            this.render();
             return true
         }
 
@@ -247,8 +247,8 @@
         let old_element = null
         $.each(particles, function (i, element) {
             if (i > 0) {
-                let box1 = old_element.getCoordinates()
-                let box2 = element.getCoordinates()
+                let box1 = old_element.getCoordinates();
+                let box2 = element.getCoordinates();
                 canvas.beginPath();
                 canvas.moveTo(box1.x, box1.y);
                 canvas.lineTo(box2.x, box2.y);
@@ -267,10 +267,10 @@
      */
     function update() {
         clear();
-        connection()
+        connection();
         particles = particles.filter(function (p) {
             return p.move()
-        })
+        });
         // Recreate particles
         if (time_to_recreate) {
             if (particles.length < init_num) {
@@ -281,10 +281,10 @@
     }
 
     update()
-    window.addEventListener("resize", resizeCanvas, false)
+    window.addEventListener("resize", resizeCanvas, false);
 
     function resizeCanvas() {
-        var canvas = document.getElementsByTagName("canvas")[0];
+        let canvas = document.getElementsByTagName("canvas")[0];
         canvas.width = window.innerWidth;
         canvas.height = window.innerHeight;
     }
