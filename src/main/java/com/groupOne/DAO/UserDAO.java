@@ -1,6 +1,5 @@
 package com.groupOne.DAO;
 
-import com.groupOne.model.LabEntity;
 import com.groupOne.model.UserEntity;
 import com.groupOne.servlet.MyListener;
 import org.hibernate.Session;
