@@ -1,10 +1,9 @@
-package com.groupone.DAO;
+package com.groupOne.DAO;
 
-import com.groupone.model.AdminEntity;
+import com.groupOne.model.AdminEntity;
 import java.util.List;
 
 public interface IAdminDAO {
-        void getSession();
         public AdminEntity getAdminById(String username,String adminId);
         public List<AdminEntity> loadAllAdmin(String username);
         public boolean deleteAdmin(String username,int adminId) throws Exception ;

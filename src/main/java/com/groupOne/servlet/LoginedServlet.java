@@ -1,6 +1,4 @@
-package com.groupone.servlet;
-
-import com.google.gson.Gson;
+package com.groupOne.servlet;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.Cookie;

@@ -96,7 +96,7 @@
             return false;
         }
         else {
-            $.cookie('loginCookie',{username: $("#username").val(), password: $("#password").val()},{path:'/'});
+            $.cookie('loginCookie',JSON.stringify({username: $("#username").val(), password: $("#password").val()}),{path:'/'});
             location.href = "logined";
             return true;
         }

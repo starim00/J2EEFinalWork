@@ -1,11 +1,10 @@
-package com.groupone.DAO;
+package com.groupOne.DAO;
 
-import com.groupone.model.LabEntity;
+import com.groupOne.model.LabEntity;
 
 import java.util.List;
 
 public interface ILabDAO {
-    public void getSession();
     public List<LabEntity> loadAllLab();
     public boolean deleteLab(String username,int labId) throws Exception;
     public List<LabEntity> searchLab(LabEntity labEntity);

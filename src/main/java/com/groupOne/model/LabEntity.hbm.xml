@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.groupone.model.LabEntity" table="lab" schema="j2ee">
+    <class name="com.groupOne.model.LabEntity" table="lab" schema="j2ee">
         <id name="labId">
             <column name="labID" sql-type="int(11)"/>
         </id>

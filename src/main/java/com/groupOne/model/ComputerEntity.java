@@ -1,4 +1,4 @@
-package com.groupone.model;
+package com.groupOne.model;
 
 import javax.persistence.*;
 

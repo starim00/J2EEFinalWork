@@ -1,9 +1,9 @@
-package com.groupone.aspectj;
+package com.groupOne.aspectj;
 
-import com.groupone.DAO.LabDAO;
-import com.groupone.model.AdminEntity;
-import com.groupone.model.LabEntity;
-import com.groupone.servlet.MyListener;
+import com.groupOne.DAO.LabDAO;
+import com.groupOne.model.AdminEntity;
+import com.groupOne.model.LabEntity;
+import com.groupOne.servlet.MyListener;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -16,7 +16,7 @@ import java.util.List;
 @Aspect
 @Component
 public class LabLeaderAspectj {
-    @Pointcut(value = "execution(* com.groupone.DAO.ComputerDAO.modifyComputer(..))||execution(* com.groupone.DAO.ComputerDAO.deleteComputer(..))||execution(* com.groupone.DAO.ComputerDAO.insertComputer(..))||execution(* com.groupone.DAO.LabDAO.modifyLab(..))")
+    @Pointcut(value = "execution(* com.groupOne.DAO.ComputerDAO.modifyComputer(..))||execution(* com.groupOne.DAO.ComputerDAO.deleteComputer(..))||execution(* com.groupOne.DAO.ComputerDAO.insertComputer(..))||execution(* com.groupOne.DAO.LabDAO.modifyLab(..))")
     private void pointCut(){}
 
     @Around("pointCut()&&args(username,..)")

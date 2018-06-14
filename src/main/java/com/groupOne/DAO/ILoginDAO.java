@@ -1,11 +1,10 @@
-package com.groupone.DAO;
+package com.groupOne.DAO;
 
-import com.groupone.model.LoginEntity;
+import com.groupOne.model.LoginEntity;
 
 import java.util.List;
 
 public interface ILoginDAO {
-    public void getSession();
     public List<LoginEntity> loadAllLogin();
     public boolean deleteLogin(int loginId) throws Exception ;
     public List<LoginEntity> searchLoginByComputerId(int computerId);

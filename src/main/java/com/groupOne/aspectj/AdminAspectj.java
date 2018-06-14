@@ -1,7 +1,7 @@
-package com.groupone.aspectj;
+package com.groupOne.aspectj;
 
-import com.groupone.model.AdminEntity;
-import com.groupone.servlet.MyListener;
+import com.groupOne.model.AdminEntity;
+import com.groupOne.servlet.MyListener;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
 import org.aspectj.lang.annotation.Aspect;
@@ -12,14 +12,14 @@ import org.springframework.stereotype.Component;
 @Aspect
 @Component
 public class AdminAspectj {
-    @Pointcut(value = "execution(* com.groupone.DAO.AdminDAO.*(..))")
+    @Pointcut(value = "execution(* com.groupOne.DAO.AdminDAO.*(..))")
     private void PointCut() {}
-    @Pointcut(value = "execution(* com.groupone.DAO.UserDAO.*(..))")
+    @Pointcut(value = "execution(* com.groupOne.DAO.UserDAO.*(..))")
     private void userCut(){}
-    @Pointcut(value = "execution(* com.groupone.DAO.LabDAO.insertLab(..))")
+    @Pointcut(value = "execution(* com.groupOne.DAO.LabDAO.insertLab(..))")
     private void labCut(){}
 
-    @Around("(PointCut()||userCut()||labCut()||execution(* com.groupone.DAO.LabDAO.deleteLab(..)))&&args(username,*)")
+    @Around("(PointCut()||userCut()||labCut()||execution(* com.groupOne.DAO.LabDAO.deleteLab(..)))&&args(username,*)")
     public Object around(ProceedingJoinPoint proceedingJoinPoint,String username)throws Throwable{
         Object object;
         Session session = MyListener.sessionFactory.openSession();

@@ -1,11 +1,12 @@
-package com.groupone.servlet;
+package com.groupOne.servlet;
 
-import com.groupone.DAO.AdminDAO;
-import com.groupone.DAO.LabDAO;
-import com.groupone.DAO.UserDAO;
-import com.groupone.model.*;
+import com.groupOne.DAO.IAdminDAO;
+import com.groupOne.DAO.ILabDAO;
+import com.groupOne.DAO.IUserDAO;
+import com.groupOne.model.*;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,16 +14,22 @@ import java.io.IOException;
 import java.util.List;
 
 public class LoginServlet extends HttpServlet {
-    private UserDAO userDAO = (UserDAO)MyListener.applicationContext.getBean("userDAO");
-    private AdminDAO adminDAO = (AdminDAO)MyListener.applicationContext.getBean("adminDAO");
-    private LabDAO labDAO = (LabDAO)MyListener.applicationContext.getBean("labDAO");
+    private IUserDAO userDAO = (IUserDAO)MyListener.applicationContext.getBean("userDAO");
+    private IAdminDAO adminDAO = (IAdminDAO)MyListener.applicationContext.getBean("adminDAO");
+    private ILabDAO labDAO = (ILabDAO)MyListener.applicationContext.getBean("labDAO");
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setHeader("Access-Control-Allow-Origin", "*");
         response.setHeader("Access-Control-Allow-Methods", "POST, GET");
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         String result="";
-        AdminEntity admin = adminDAO.getAdminById(username,username);
+        AdminEntity admin = null;
+        try{
+            admin = adminDAO.getAdminById(username,username);
+        }catch (Exception e){
+            e.printStackTrace();
+            admin = null;
+        }
         if(admin!=null&&admin.getPassword().equals(password)){
             result="{\"state\":3}";
         }

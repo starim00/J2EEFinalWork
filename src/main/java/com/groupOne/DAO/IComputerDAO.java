@@ -1,10 +1,9 @@
-package com.groupone.DAO;
+package com.groupOne.DAO;
 
-import com.groupone.model.ComputerEntity;
+import com.groupOne.model.ComputerEntity;
 import java.util.List;
 
 public interface IComputerDAO {
-    public void getSession();
     public List<ComputerEntity> loadAllComputer();
     public boolean deleteComputer(String username,int computerId) throws Exception;
     public List<Object[]> searchComputer(int location,String labName);

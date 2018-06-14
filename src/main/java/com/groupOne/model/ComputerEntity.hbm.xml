@@ -4,7 +4,7 @@
     "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
 <hibernate-mapping>
 
-    <class name="com.groupone.model.ComputerEntity" table="computer" schema="j2ee">
+    <class name="com.groupOne.model.ComputerEntity" table="computer" schema="j2ee">
         <id name="computerId">
             <column name="computerID" sql-type="int(11)"/>
         </id>

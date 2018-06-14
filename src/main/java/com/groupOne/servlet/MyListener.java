@@ -1,4 +1,4 @@
-package com.groupone.servlet;
+package com.groupOne.servlet;
 
 import org.hibernate.SessionFactory;
 import org.springframework.context.ApplicationContext;
@@ -12,7 +12,6 @@ import javax.servlet.http.HttpSessionEvent;
 import javax.servlet.http.HttpSessionListener;
 import javax.servlet.http.HttpSessionBindingEvent;
 
-@WebListener()
 public class MyListener implements ServletContextListener,
         HttpSessionListener, HttpSessionAttributeListener {
     public static ApplicationContext applicationContext;

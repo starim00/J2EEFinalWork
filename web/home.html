@@ -19,17 +19,29 @@
 				<h4>管理我的信息</h4>
 				<div class="row">
 					<div class="input-field col s12">
-						<input id="acc_name" type="text" class="validate">
-						<label for="acc_name">用户姓名</label>
+						<input disabled id="acc_name" type="text" class="validate">
+						<label id="lab_name" for="acc_name">用户姓名</label>
 					</div>
+                    <div class="input-field col s12">
+                        <input id="acc_pas_old" type="password" class="validate">
+                        <label for="acc_pas_old">输入旧密码</label>
+                        <span class="helper-text" data-error="请输入原密码" id="pasErr"/>
+                    </div>
 					<div class="input-field col s12">
-						<input id="acc_pas" type="password" class="validate">
-						<label for="acc_pas">用户密码</label>
+						<input id="acc_pas_new" type="password" class="validate">
+						<label for="acc_pas_new">输入新密码</label>
+                        <span class="helper-text" data-error="请输入新密码"/>
 					</div>
+                    <div class="input-field col s12">
+                        <input id="acc_pas_new1" type="password" class="validate">
+                        <label for="acc_pas_new1">确认新密码</label>
+                        <span class="helper-text" data-error="两次输入密码不相同"/>
+                    </div>
 				</div>
 			</div>
 			<div class="modal-footer">
-				<a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                <a class="modal-action modal-close waves-effect waves-green btn-flat ">关闭</a>
+				<a class="modal-action waves-effect waves-green btn-flat " onclick="modifyMe()">确定修改</a>
 			</div>
 		</div>
 		<div id="my_group" class="modal modal-fixed-footer">
@@ -111,10 +123,10 @@
 							<div class="collapsible-body">
 								<ul>
 									<li>
-										<a href="home2.html#lab" class="waves-effect">添加实验室</a>
+										<a href="mainpage.html#lab" class="waves-effect">添加实验室</a>
 									</li>
 									<li>
-										<a href="home2.html#lab" class="waves-effect">查看实验室</a>
+										<a href="mainpage.html#lab" class="waves-effect">查看实验室</a>
 									</li>
 								</ul>
 							</div>
@@ -124,10 +136,10 @@
 							<div class="collapsible-body">
 								<ul>
 									<li>
-										<a href="home2.html#com" class="waves-effect">添加实验室</a>
+										<a href="mainpage.html#com" class="waves-effect">添加实验室</a>
 									</li>
 									<li>
-										<a href="home2.html#com" class="waves-effect">查看实验室</a>
+										<a href="mainpage.html#com" class="waves-effect">查看实验室</a>
 									</li>
 								</ul>
 							</div>
@@ -137,10 +149,10 @@
 							<div class="collapsible-body">
 								<ul>
 									<li>
-										<a href="home2.html#acc" class="waves-effect">添加用户</a>
+										<a href="mainpage.html#acc" class="waves-effect">添加用户</a>
 									</li>
 									<li>
-										<a href="home2.html#acc" class="waves-effect">查看用户</a>
+										<a href="mainpage.html#acc" class="waves-effect">查看用户</a>
 									</li>
 								</ul>
 							</div>
@@ -150,10 +162,10 @@
 							<div class="collapsible-body">
 								<ul>
 									<li>
-										<a href="home2.html#any" class="waves-effect">学生分析</a>
+										<a href="mainpage.html#any" class="waves-effect">学生分析</a>
 									</li>
 									<li>
-										<a href="home2.html#any" class="waves-effect">实验室分析</a>
+										<a href="mainpage.html#any" class="waves-effect">实验室分析</a>
 									</li>
 								</ul>
 							</div>
@@ -174,7 +186,7 @@
 				</nav>
 				<div class="row">
 					<div class="col s12 m4 l4 ">
-						<a href="home2.html#lab">
+						<a href="mainpage.html#lab">
 							<div class="card  cyan lighten-5 ">
 								<div class="card-content ">
 									<span class="card-title">实验室管理</span>
@@ -184,7 +196,7 @@
 					</div>
 
 					<div class="col s12 m4 l4">
-						<a href="home2.html#com">
+						<a href="mainpage.html#com">
 							<div class="card  cyan lighten-5">
 								<div class="card-content">
 									<span class="card-title">计算机管理</span>
@@ -193,7 +205,7 @@
 						</a>
 					</div>
 					<div class="col s12 m4 l4">
-						<a href="home2.html#acc">
+						<a href="mainpage.html#acc">
 							<div class="card  cyan lighten-5">
 								<div class="card-content">
 									<span class="card-title">用户管理</span>
@@ -203,7 +215,7 @@
 					</div>
 <!--
 					<div class="col s12 m6 l3">
-						<a href="home2.html#any">
+						<a href="mainpage.html#any">
 							<div class="card  cyan lighten-5">
 								<div class="card-content">
 									<span class="card-title">统计分析</span>
@@ -225,31 +237,7 @@
 							</tr>
 						</thead>
 
-						<tbody>
-							<tr>
-								<td>教室1</td>
-								<td>理四218</td>
-								<td>蔡剑平</td>
-								<td>123456</td>
-							</tr>
-							<tr>
-								<td>教室2</td>
-								<td>理四218</td>
-								<td>蔡剑平</td>
-								<td>123456</td>
-							</tr>
-							<tr>
-								<td>教室3</td>
-								<td>理四218</td>
-								<td>蔡剑平</td>
-								<td>123456</td>
-							</tr>
-							<tr>
-								<td>教室3</td>
-								<td>理四218</td>
-								<td>蔡剑平</td>
-								<td>123456</td>
-							</tr>
+						<tbody id="table">
 						</tbody>
 					</table>
 				</div>
@@ -264,7 +252,62 @@
                 $('.modal').modal();
                 $('.dropdown-trigger').dropdown();
                 $('.sidenav').sidenav();
+                $.ajax({
+                    type: 'POST',
+                    url: 'http://127.0.0.1:8080/home',
+                    data: {method:"load"},
+                    header: {'Access-Control-Allow-Origin': '*'},
+                    success: function (data) {
+                        console.log(data);
+                        doLoad(data);
+                    }
+                });
             });
+
+			function doLoad(data) {
+				let arr = JSON.parse(data);
+				console.log(arr);
+                $("#table").empty();
+				for(i in arr){
+					let element = "<tr><td>"+arr[i]["labName"]+"</td><td>"+arr[i]["location"]+"</td><td>"+arr[i]["labLeader"]+"</td><td>"+arr[i]["tel"]+"</td></tr>"
+					$("#table").append(element);
+				}
+				$("#acc_name").attr("value",JSON.parse($.cookie("loginCookie"))["username"]);
+				$("#lab_name").attr("class","active")
+            }
+
+            function modifyMe(){
+			    let user = JSON.parse($.cookie("loginCookie"))["username"];
+			    if($("#acc_pas_old").val()==""){
+                    $("#acc_pas_old").attr("class","validate invalid");
+                }
+                if($("#acc_pas_new").val()==""){
+                    $("#acc_pas_new").attr("class","validate invalid");
+                }
+                if($("#acc_pas_new1").val()!=$("#acc_pas_new").val()){
+                    $("#acc_pas_new1").attr("class","validate invalid");
+                }
+                else{
+                    $.ajax({
+                        type: 'POST',
+                        url: 'http://127.0.0.1:8080/home',
+                        data: {method:"modify",username:user,password:$("#acc_pas_old").val(),password_new:$("#acc_pas_new").val()},
+                        header: {'Access-Control-Allow-Origin': '*'},
+                        success: function (data) {
+                            if(data=="true"){
+                                alert("修改成功");
+                                $("#my_mod_modal").modal("close");
+                            }
+                            else{
+                                if(data=="PasswordError"){
+
+                                }
+                            }
+                            console.log(data);
+                        }
+                    });
+                }
+			}
 
 		</script>
 	</body>

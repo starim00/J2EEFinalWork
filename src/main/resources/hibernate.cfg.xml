@@ -21,17 +21,16 @@
         <!-- hibernate.connection.autocommit: 事务自动提交  -->
         <property name="hibernate.connection.autocommit">true</property>
         <!-- 将Session与线程绑定=> 只有配置了该配置,才能使用getCurrentSession -->
-        <property name="hibernate.current_session_context_class">thread</property>
-        <mapping class="com.groupone.model.AdminEntity"/>
-        <mapping class="com.groupone.model.ComputerEntity"/>
-        <mapping class="com.groupone.model.LabEntity"/>
-        <mapping class="com.groupone.model.LoginEntity"/>
-        <mapping class="com.groupone.model.UserEntity"/>
-        <mapping resource="com/groupone/model/AdminEntity.hbm.xml"/>
-        <mapping resource="com/groupone/model/ComputerEntity.hbm.xml"/>
-        <mapping resource="com/groupone/model/LabEntity.hbm.xml"/>
-        <mapping resource="com/groupone/model/LoginEntity.hbm.xml"/>
-        <mapping resource="com/groupone/model/UserEntity.hbm.xml"/>
+        <mapping class="com.groupOne.model.AdminEntity"/>
+        <mapping class="com.groupOne.model.ComputerEntity"/>
+        <mapping class="com.groupOne.model.LabEntity"/>
+        <mapping class="com.groupOne.model.LoginEntity"/>
+        <mapping class="com.groupOne.model.UserEntity"/>
+        <mapping resource="com/groupOne/model/AdminEntity.hbm.xml"/>
+        <mapping resource="com/groupOne/model/ComputerEntity.hbm.xml"/>
+        <mapping resource="com/groupOne/model/LabEntity.hbm.xml"/>
+        <mapping resource="com/groupOne/model/LoginEntity.hbm.xml"/>
+        <mapping resource="com/groupOne/model/UserEntity.hbm.xml"/>
         <!-- 引入ORM 映射文件 填写src之后的路径 -->
         <!-- <mapping resource="com/itheima/a_hello/User.hbm.xml"/>-->
     </session-factory>
