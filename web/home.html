@@ -281,10 +281,10 @@
 			    if($("#acc_pas_old").val()==""){
                     $("#acc_pas_old").attr("class","validate invalid");
                 }
-                if($("#acc_pas_new").val()==""){
+                else if($("#acc_pas_new").val()==""){
                     $("#acc_pas_new").attr("class","validate invalid");
                 }
-                if($("#acc_pas_new1").val()!=$("#acc_pas_new").val()){
+                else if($("#acc_pas_new1").val()!=$("#acc_pas_new").val()){
                     $("#acc_pas_new1").attr("class","validate invalid");
                 }
                 else{

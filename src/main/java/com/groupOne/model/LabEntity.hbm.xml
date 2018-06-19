@@ -5,8 +5,9 @@
 <hibernate-mapping>
 
     <class name="com.groupOne.model.LabEntity" table="lab" schema="j2ee">
-        <id name="labId">
+        <id name="labId" type="int">
             <column name="labID" sql-type="int(11)"/>
+            <generator class="identity"/>
         </id>
         <property name="labName">
             <column name="labName" sql-type="varchar(255)"/>

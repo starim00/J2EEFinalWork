@@ -20,7 +20,7 @@
         <div class="row">
             <div class="input-field col s12">
                 <input disabled id="my_name" type="text" class="validate">
-                <label id="lab_my_name" for="acc_name">用户姓名</label>
+                <label id="lab_my_name" for="my_name">用户姓名</label>
             </div>
             <div class="input-field col s12">
                 <input id="acc_pas_old" type="password" class="validate">
@@ -130,41 +130,42 @@
 <div class="my-right">
     <div id="lab" class="container">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12 m6 l3">
-                        <input id="lab_name" type="text" class="validate">
-                        <label for="lab_name">实验室名称</label>
-                    </div>
-                    <div class="input-field col s12 m6 l3">
-                        <input id="lab_adm" type="text" class="validate">
-                        <label for="lab_adm">实验室管理员</label>
-                    </div>
-                    <div class="input-field col s12 m6 l3">
-                        <input id="lab_loc" type="text" class="validate">
-                        <label for="lab_loc">实验室位置</label>
-                    </div>
-                    <div class="input-field col s12 m6 l3">
-                        <select id="lab_safe">
-                            <option value="" disabled selected>实验室安全等级</option>
-                            <option value="1">A</option>
-                            <option value="2">B</option>
-                            <option value="3">C</option>
-                            <option value="3">D</option>
-                        </select>
-                        <label id="label_lab_safe">实验室安全等级</label>
-                    </div>
-                </div>
-            </form>
+            <!--<form class="col s12">-->
+                <!--<div class="row">-->
+                    <!--<div class="input-field col s12 m6 l3">-->
+                        <!--<input id="lab_name" type="text" class="validate">-->
+                        <!--<label for="lab_name">实验室名称</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m6 l3">-->
+                        <!--<input id="lab_lead" type="text" class="validate">-->
+                        <!--<label for="lab_lead">实验室管理员</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m6 l3">-->
+                        <!--<input id="lab_loc" type="text" class="validate">-->
+                        <!--<label for="lab_loc">实验室位置</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m6 l3">-->
+                        <!--<select id="lab_safe">-->
+                            <!--<option value="" disabled selected>实验室安全等级</option>-->
+                            <!--<option value="1">A</option>-->
+                            <!--<option value="2">B</option>-->
+                            <!--<option value="3">C</option>-->
+                            <!--<option value="3">D</option>-->
+                        <!--</select>-->
+                        <!--<label id="label_lab_safe">实验室安全等级</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
             <div class="row">
+                <br>
                 <div class=" left-align col s6 m6 l6">
                     <a class="modal-trigger waves-effect waves-light btn green modal-trigger"
-                       href="#lab_add_modal1">添加</a>
+                       href="#lab_add_modal1" onclick="openCreateLab()">添加</a>
                 </div>
-                <div class=" right-align col s6 m6 l6">
-                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
-                    <a class="waves-effect waves-light btn grey">重置</a>
-                </div>
+                <!--<div class=" right-align col s6 m6 l6">-->
+                    <!--<a class="waves-effect waves-light btn blue" onclick="searchLab()">查询<i class="material-icons right">search</i></a>-->
+                    <!--<a class="waves-effect waves-light btn grey" onclick="window.location.reload()">重置</a>-->
+                <!--</div>-->
             </div>
             <div id="lab_add_modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
@@ -175,15 +176,16 @@
                             <label for="lab_name_add">请输入实验室名称</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="lab_adm_add" type="text" class="validate">
-                            <label for="lab_adm_add">请输入实验室管理员</label>
+                            <select id="lab_lead_add" type="text" class="validate">
+                            </select>
+                            <label for="lab_lead_add">请输入实验室管理员</label>
                         </div>
                         <div class="input-field col s12">
-                            <input id="lab_loc_add" type="text" class="validate">
+                            <input id="lab_loc_add" type="number" class="validate">
                             <label for="lab_loc_add">请输入实验室位置</label>
                         </div>
                         <div class="input-field col s12">
-                            <select>
+                            <select id="lab_safe_level_add">
                                 <option value="" disabled selected>实验室安全等级</option>
                                 <option value="1">A</option>
                                 <option value="2">B</option>
@@ -195,7 +197,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                    <a href="#!" class="modal-action waves-effect waves-green btn-flat" onclick="createLab()">确定添加</a>
                 </div>
 
             </div>
@@ -257,7 +259,8 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <a id="lab_mod_confirm" href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">确定修改</a>
+                        <a id="lab_mod_confirm" href="#!"
+                           class="modal-action waves-effect waves-green btn-flat">确定修改</a>
                     </div>
                 </div>
                 <tbody id="table_lab">
@@ -268,22 +271,20 @@
 
     <div id="com" class="container">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12 m6">
-                        <input id="com_num" type="number" class="validate">
-                        <label for="com_num">计算机桌号</label>
-                    </div>
-                    <div class="input-field col s12 m6">
-                        <select>
-                            <option value="" disabled selected>实验室名称</option>
-                            <option value="1">物联网实验室</option>
-                            <option value="2">教室1</option>
-                        </select>
-                        <label>所在实验室名称</label>
-                    </div>
-                </div>
-            </form>
+            <!--<form class="col s12">-->
+                <!--<div class="row">-->
+                    <!--<div class="input-field col s12 m6">-->
+                        <!--<input id="com_num" type="number" class="validate">-->
+                        <!--<label for="com_num">计算机桌号</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m6">-->
+                        <!--<select id="com_lab_name">-->
+                            <!--<option value="" disabled selected>实验室名称</option>-->
+                        <!--</select>-->
+                        <!--<label>所在实验室名称</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
             <div id="com_mod_modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
                     <h4>修改计算机</h4>
@@ -305,17 +306,20 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" id="com_mod_confirm" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                    <a href="#!" id="com_mod_confirm"
+                       class="modal-action waves-effect waves-green btn-flat ">确定修改</a>
                 </div>
             </div>
             <div class="row">
+                <br>
                 <div class="left-align col s6 m6 l6">
-                    <a class="modal-trigger waves-effect waves-light btn green" href="#com_add_modal1">添加</a>
+                    <a class="modal-trigger waves-effect waves-light btn green" href="#com_add_modal1"
+                       onclick="openCreateCom()">添加</a>
                 </div>
-                <div class="right-align col s6 m6 l6">
-                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
-                    <a class="waves-effect waves-light btn grey">重置</a>
-                </div>
+                <!--<div class="right-align col s6 m6 l6">-->
+                    <!--<a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>-->
+                    <!--<a class="waves-effect waves-light btn grey" onclick="window.location.reload()">重置</a>-->
+                <!--</div>-->
             </div>
             <div id="com_add_modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
@@ -331,17 +335,14 @@
                             <label for="com_num_add">计算机桌号</label>
                         </div>
                         <div class="input-field col s12">
-                            <select>
-                                <option value="" disabled selected>实验室名称</option>
-                                <option value="1">物联网实验室</option>
-                                <option value="2">教室1</option>
+                            <select id="com_lab_add">
                             </select>
                             <label>所在实验室名称</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                    <a href="#!" class="modal-action waves-effect waves-green btn-flat" onclick="createCom()">确定添加</a>
                 </div>
             </div>
             <div id="com_look_modal1" class="modal bottom-sheet">
@@ -395,26 +396,26 @@
 
     <div id="acc" class="container">
         <div class="row">
-            <form class="col s12">
-                <div class="row">
-                    <div class="input-field col s12 m4">
-                        <input id="acc_id" type="text" class="validate">
-                        <label for="acc_id">用户ID</label>
-                    </div>
-                    <div class="input-field col s12 m4">
-                        <input id="acc_name" type="text" class="validate">
-                        <label for="acc_name">用户姓名</label>
-                    </div>
-                    <div class="input-field col s12 m4">
-                        <select>
-                            <option value="" disabled selected>用户类别</option>
-                            <option value="1">User</option>
-                            <option value="2">Leader</option>
-                        </select>
-                        <label>用户类别</label>
-                    </div>
-                </div>
-            </form>
+            <!--<form class="col s12">-->
+                <!--<div class="row">-->
+                    <!--<div class="input-field col s12 m4">-->
+                        <!--<input id="acc_id" type="text" class="validate">-->
+                        <!--<label for="acc_id">用户ID</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m4">-->
+                        <!--<input id="acc_name" type="text" class="validate">-->
+                        <!--<label for="acc_name">用户姓名</label>-->
+                    <!--</div>-->
+                    <!--<div class="input-field col s12 m4">-->
+                        <!--<select>-->
+                            <!--<option value="" disabled selected>用户类别</option>-->
+                            <!--<option value="1">User</option>-->
+                            <!--<option value="2">Leader</option>-->
+                        <!--</select>-->
+                        <!--<label>用户类别</label>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</form>-->
             <div id="acc_mod_modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
                     <h4>修改用户</h4>
@@ -427,10 +428,15 @@
                             <input id="acc_pas_mod" type="password" class="validate">
                             <label for="acc_pas_mod" id="label_acc_pas_mod">用户密码</label>
                         </div>
+                        <div class="input-field col s12 ">
+                            <input id="acc_tel_mod" type="text" class="validate">
+                            <label for="acc_tel_add" id="label_acc_tel_mod">用户联系方式</label>
+                        </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" id="user_mod_confirm" class="modal-action modal-close waves-effect waves-green btn-flat ">确定修改</a>
+                    <a href="#!" id="user_mod_confirm"
+                       class="modal-action waves-effect waves-green btn-flat ">确定修改</a>
                 </div>
             </div>
             <div id="acc_look_modal1" class="modal bottom-sheet">
@@ -466,13 +472,14 @@
                 </div>
             </div>
             <div class="row">
+                <br>
                 <div class="left-align col s6 m6 l6">
                     <a class="modal-trigger waves-effect waves-light btn green" href="#acc_add_modal1">添加</a>
                 </div>
-                <div class="right-align col s6 m6 l6">
-                    <a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>
-                    <a class="waves-effect waves-light btn grey">重置</a>
-                </div>
+                <!--<div class="right-align col s6 m6 l6">-->
+                    <!--<a class="waves-effect waves-light btn blue">查询<i class="material-icons right">search</i></a>-->
+                    <!--<a class="waves-effect waves-light btn grey" onclick="window.location.reload()">重置</a>-->
+                <!--</div>-->
             </div>
             <div id="acc_add_modal1" class="modal modal-fixed-footer">
                 <div class="modal-content">
@@ -481,24 +488,24 @@
                     <div class="row">
                         <div class="input-field col s12 ">
                             <input id="acc_id_add" type="text" class="validate">
-                            <label for="acc_id_add">用户ID</label>
+                            <label for="acc_id_add" id="label_acc_id_add">用户ID</label>
                         </div>
                         <div class="input-field col s12 ">
                             <input id="acc_name_add" type="text" class="validate">
-                            <label for="acc_name">用户姓名</label>
+                            <label for="acc_name_add" id="label_acc_name_add">用户姓名</label>
                         </div>
                         <div class="input-field col s12 ">
                             <input id="acc_pas_add" type="password" class="validate">
-                            <label for="acc_pas_add">用户密码</label>
+                            <label for="acc_pas_add" id="label_acc_pas_add">用户密码</label>
                         </div>
                         <div class="input-field col s12 ">
                             <input id="acc_tel_add" type="text" class="validate">
-                            <label for="acc_tel_add">用户联系方式</label>
+                            <label for="acc_tel_add" id="label_acc_tel_add">用户联系方式</label>
                         </div>
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat ">确定添加</a>
+                    <a href="#!" class="modal-action waves-effect waves-green btn-flat "onclick="createUser()">确定添加</a>
                 </div>
             </div>
         </div>
@@ -515,30 +522,6 @@
                 </thead>
 
                 <tbody id="table_user">
-                <tr>
-                    <td>31501110</td>
-                    <td>王芸琦</td>
-                    <td>18258846759</td>
-                    <td>Leader</td>
-                    <td>
-                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#acc_look_modal1">查看</a>
-                        <a class="waves-effect waves-light btn purple modal-trigger" href="#acc_mod_modal1">修改</a>
-                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
-                        </a>
-                    </td>
-                </tr>
-                <tr>
-                    <td>31501115</td>
-                    <td>护舒宝</td>
-                    <td>123</td>
-                    <td>Leader</td>
-                    <td>
-                        <a class="waves-effect waves-light btn indigo modal-trigger" href="#acc_look_modal1">查看</a>
-                        <a class="waves-effect waves-light btn purple modal-trigger" href="#acc_mod_modal1">修改</a>
-                        <a class="waves-effect waves-light btn red" onclick="return confirmReset()">删除</i>
-                        </a>
-                    </td>
-                </tr>
                 </tbody>
             </table>
         </div>
@@ -573,18 +556,20 @@
             let lab = "<tr><td>" + json["lab"][i]["labId"] + "</td><td>" + json["lab"][i]["labName"] +
                 "</td><td>" + json["lab"][i]["labLeader"] + "</td><td>" + json["lab"][i]["location"] +
                 "</td><td>" + json["lab"][i]["safeLevel"] + "</td><td>" +
-                "<a class='waves-effect waves-light btn indigo modal-trigger' href='#lab_look_modal' onclick='lookLab("+ json["lab"][i]["labId"] + ")'>查看</a>" +
-                "<a class='waves-effect waves-light btn purple modal-trigger' href='#lab_mod_modal1' onclick='openModifyLab("+i+")'>修改</a>" +
+                "<a class='waves-effect waves-light btn indigo modal-trigger' href='#lab_look_modal' onclick='lookLab(" + json["lab"][i]["labId"] + ")'>查看</a>" +
+                "<a class='waves-effect waves-light btn purple modal-trigger' href='#lab_mod_modal1' onclick='openModifyLab(" + i + ")'>修改</a>" +
                 "<a class='waves-effect waves-light btn red ' onclick='return deleteLab(" + json["lab"][i]["labId"] + ")'>删除</i></a>" +
                 "</td></tr>";
             $("#table_lab").append(lab);
+            $("#com_lab_name").append("<option value='"+i+"' >"+json["lab"][i]["labName"]+"</option>");
         }
+
         $("#table_com").empty();
         for (let j in json["com"]) {
             let com = "<tr><td>" + json["com"][j]["computerId"] + "</td><td>" + json["com"][j]["ipAddress"] +
                 "</td><td>" + json["com"][j]["location"] + "</td><td>" + json["com"][j]["labName"] + "</td><td>" +
-                "<a class='waves-effect waves-light btn indigo modal-trigger' href='#com_look_modal1' onclick='lookCom("+ json["com"][j]["computerId"]+")'>查看</a>" +
-                "<a class='waves-effect waves-light btn purple modal-trigger' href='#com_mod_modal1' onclick='openModifyCom("+j+")'>修改</a>" +
+                "<a class='waves-effect waves-light btn indigo modal-trigger' href='#com_look_modal1' onclick='lookCom(" + json["com"][j]["computerId"] + ")'>查看</a>" +
+                "<a class='waves-effect waves-light btn purple modal-trigger' href='#com_mod_modal1' onclick='openModifyCom(" + j + ")'>修改</a>" +
                 "<a class='waves-effect waves-light btn red ' onclick='return deleteCom(" + json["com"][j]["computerId"] + ")'>删除</i></a>" +
                 "</td></tr>";
             $("#table_com").append(com);
@@ -599,14 +584,15 @@
             else {
                 user += "User";
             }
-            user += "</td><td>" + "<a class='waves-effect waves-light btn indigo modal-trigger' href='#acc_look_modal1' onclick='lookUser("+json["user"][k]["userId"]+")'>查看</a>" +
-                "<a class='waves-effect waves-light btn purple modal-trigger' href='#acc_mod_modal1'onclick='openModifyUser("+k+")'>修改</a>" +
+            user += "</td><td>" + "<a class='waves-effect waves-light btn indigo modal-trigger' href='#acc_look_modal1' onclick='lookUser(" + json["user"][k]["userId"] + ")'>查看</a>" +
+                "<a class='waves-effect waves-light btn purple modal-trigger' href='#acc_mod_modal1'onclick='openModifyUser(" + k + ")'>修改</a>" +
                 "<a class='waves-effect waves-light btn red ' onclick='return deleteUser(" + json["user"][k]["userId"] + ")'>删除</i></a>" +
                 "</td></tr>";
             $("#table_user").append(user);
         }
-        $("#my_name").attr("value",JSON.parse($.cookie("loginCookie"))["username"])
-        $("#lab_my_name").attr("class","active")
+        $("#my_name").attr("value", JSON.parse($.cookie("loginCookie"))["username"])
+        $("#lab_my_name").attr("class", "active")
+        $('select').formSelect();
     }
 
     function deleteLab(labId) {
@@ -615,14 +601,14 @@
             $.ajax({
                 type: 'POST',
                 url: 'http://127.0.0.1:8080/mainPage',
-                data: {method: "delLab",username:JSON.parse($.cookie("loginCookie"))["username"],labId: labId},
+                data: {method: "delLab", username: JSON.parse($.cookie("loginCookie"))["username"], labId: labId},
                 header: {'Access-Control-Allow-Origin': '*'},
                 success: function (data) {
                     console.log(data);
-                    if(JSON.parse(data)["success"]==1){
+                    if (JSON.parse(data)["success"] == 1) {
                         reLoad();
                     }
-                    else{
+                    else {
                         alert("删除失败");
                     }
                 }
@@ -636,14 +622,14 @@
             $.ajax({
                 type: 'POST',
                 url: 'http://127.0.0.1:8080/mainPage',
-                data: {method: "delCom", username:JSON.parse($.cookie("loginCookie"))["username"],comId: comId},
+                data: {method: "delCom", username: JSON.parse($.cookie("loginCookie"))["username"], comId: comId},
                 header: {'Access-Control-Allow-Origin': '*'},
                 success: function (data) {
                     console.log(data);
-                    if(JSON.parse(data)["success"]==1){
+                    if (JSON.parse(data)["success"] == 1) {
                         reLoad();
                     }
-                    else{
+                    else {
                         alert("删除失败");
                     }
                 }
@@ -657,33 +643,33 @@
             $.ajax({
                 type: 'POST',
                 url: 'http://127.0.0.1:8080/mainPage',
-                data: {method: "delUser", username:JSON.parse($.cookie("loginCookie"))["username"],userId: userId},
+                data: {method: "delUser", username: JSON.parse($.cookie("loginCookie"))["username"], userId: userId},
                 header: {'Access-Control-Allow-Origin': '*'},
                 success: function (data) {
                     console.log(data);
-                    if(JSON.parse(data)["success"]==1){
+                    if (JSON.parse(data)["success"] == 1) {
                         reLoad();
                     }
-                    else{
+                    else {
                         alert("删除失败");
                     }
                 }
             });
         }
     }
-    
+
     function lookLab(labId) {
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "lookLab",labId: labId},
+            data: {method: "lookLab", labId: labId},
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 $("#look_lab").empty();
                 let lookLabList = JSON.parse(data);
                 console.log(data);
-                for(let i in lookLabList){
-                    let looklab = "<tr><td>"+lookLabList[i]["location"]+"</td><td>"+lookLabList[i]["useTime"]+"</td><td>"+lookLabList[i]["useCount"]+"</td></tr>"
+                for (let i in lookLabList) {
+                    let looklab = "<tr><td>" + lookLabList[i]["location"] + "</td><td>" + lookLabList[i]["useTime"] + "</td><td>" + lookLabList[i]["useCount"] + "</td></tr>"
                     $("#look_lab").append(looklab);
                 }
             }
@@ -694,17 +680,17 @@
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "lookCom",computerId: computerId},
+            data: {method: "lookCom", computerId: computerId},
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 console.log(data);
                 let lookComList = JSON.parse(data);
                 $("#comUse").empty();
                 $("#login_list").empty();
-                let comUse = "<tr><td>"+lookComList["comUse"]["useTime"]+"</td><td>"+lookComList["comUse"]["useCount"]+"</td></tr>";
+                let comUse = "<tr><td>" + lookComList["comUse"]["useTime"] + "</td><td>" + lookComList["comUse"]["useCount"] + "</td></tr>";
                 $("#comUse").append(comUse);
-                for(let i in lookComList["login"]){
-                    let loginList = "<tr><td>"+lookComList["login"][i]["userId"]+"</td><td>"+lookComList["login"][i]["inTime"]+"</td><td>"+lookComList["login"][i]["outTime"]+"</td></tr>";
+                for (let i in lookComList["login"]) {
+                    let loginList = "<tr><td>" + lookComList["login"][i]["userId"] + "</td><td>" + lookComList["login"][i]["inTime"] + "</td><td>" + lookComList["login"][i]["outTime"] + "</td></tr>";
                     $("#login_list").append(loginList);
                 }
             }
@@ -715,17 +701,17 @@
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "lookUser",userId:userId},
+            data: {method: "lookUser", userId: userId},
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 console.log(data);
                 let lookUserList = JSON.parse(data);
                 $("#user_com").empty();
                 $("#user_detail").empty();
-                let usercom = "<tr><td>"+lookUserList["comUse"]["useTime"]+"</td><td>"+lookUserList["comUse"]["useCount"]+"</td></tr>";
+                let usercom = "<tr><td>" + lookUserList["comUse"]["useTime"] + "</td><td>" + lookUserList["comUse"]["useCount"] + "</td></tr>";
                 $("#user_com").append(usercom);
-                for(let i in lookUserList["useDetail"]){
-                    let useDetail = "<tr><td>"+lookUserList["useDetail"][i]["labName"]+"</td><td>"+lookUserList["useDetail"][i]["location"]+"</td><td>"+lookUserList["useDetail"][i]["inTime"]+"</td><td>"+lookUserList["useDetail"][i]["outTime"]+"</td></tr>";
+                for (let i in lookUserList["useDetail"]) {
+                    let useDetail = "<tr><td>" + lookUserList["useDetail"][i]["labName"] + "</td><td>" + lookUserList["useDetail"][i]["location"] + "</td><td>" + lookUserList["useDetail"][i]["inTime"] + "</td><td>" + lookUserList["useDetail"][i]["outTime"] + "</td></tr>";
                     $("#user_detail").append(useDetail);
                 }
             }
@@ -733,15 +719,15 @@
     }
 
     function openModifyLab(i) {
-        $("#lab_name_mod").attr("value",json["lab"][i]["labName"]);
-        $("#label_lab_name_mod").attr("class","active");
-        $("#lab_lead_mod").attr("value",json["lab"][i]["labLeader"]);
-        $("#label_lab_lead_mod").attr("class","active");
-        $("#lab_loc_mod").attr("value",json["lab"][i]["location"]);
-        $("#label_lab_loc_mod").attr("class","active");
-        $("#lab_safe_mod").find("option[value="+json["lab"][i]["safeLevel"]+"]").attr("class","selected");
-        $("#label_lab_safe_mod").attr("class","active");
-        $("#lab_mod_confirm").attr("onclick","modifyLab("+json["lab"][i]["labId"]+")");
+        $("#lab_name_mod").attr("value", json["lab"][i]["labName"]);
+        $("#label_lab_name_mod").attr("class", "active");
+        $("#lab_lead_mod").attr("value", json["lab"][i]["labLeader"]);
+        $("#label_lab_lead_mod").attr("class", "active");
+        $("#lab_loc_mod").attr("value", json["lab"][i]["location"]);
+        $("#label_lab_loc_mod").attr("class", "active");
+        $("#lab_safe_mod").find("option[value=" + json["lab"][i]["safeLevel"] + "]").attr("class", "selected");
+        $("#label_lab_safe_mod").attr("class", "active");
+        $("#lab_mod_confirm").attr("onclick", "modifyLab(" + json["lab"][i]["labId"] + ")");
     }
 
     function modifyLab(labId) {
@@ -749,14 +735,23 @@
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "modifyLab",username:JSON.parse($.cookie("loginCookie"))["username"],labId:labId,labName:$("#lab_name_mod").val(),labLeader:$("#lab_lead_mod").val(),location:$("#lab_loc_mod").val(),safeLevel:$("#lab_safe_mod").val()},
+            data: {
+                method: "modifyLab",
+                username: JSON.parse($.cookie("loginCookie"))["username"],
+                labId: labId,
+                labName: $("#lab_name_mod").val(),
+                labLeader: $("#lab_lead_mod").val(),
+                location: $("#lab_loc_mod").val(),
+                safeLevel: $("#lab_safe_mod").val()
+            },
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 console.log(data);
-                if(JSON.parse(data)["success"]==1){
+                if (JSON.parse(data)["success"] == 1) {
                     reLoad();
+                    $("#lab_mod_modal1").modal("close");
                 }
-                else{
+                else {
                     alert("修改失败");
                 }
             }
@@ -764,32 +759,40 @@
     }
 
     function openModifyCom(i) {
-        $("#com_ip_mod").attr("value",json["com"][i]["ipAddress"]);
-        $("#label_com_ip_mod").attr("class","active");
-        $("#com_num_mod").attr("value",json["com"][i]["location"]);
-        $("#label_com_num_mod").attr("class","active");
+        $("#com_ip_mod").attr("value", json["com"][i]["ipAddress"]);
+        $("#label_com_ip_mod").attr("class", "active");
+        $("#com_num_mod").attr("value", json["com"][i]["location"]);
+        $("#label_com_num_mod").attr("class", "active");
         $("#com_lab_name_mod").empty();
-        for(let j in json["lab"]){
+        for (let j in json["lab"]) {
             console.log(json["lab"][j]["labName"]);
-            $("#com_lab_name_mod").append("<option value='"+j+"'>"+json["lab"][j]["labName"]+"</option>");
+            $("#com_lab_name_mod").append("<option value='" + j + "'>" + json["lab"][j]["labName"] + "</option>");
         }
         $('select').formSelect();
-        $("#com_lab_name_mod").find("option[value="+json["com"][i]["labId"]+"]").attr("class","selected");
-        $("#com_mod_confirm").attr("onclick","modifyCom("+json["com"][i]["computerId"]+")");
+        $("#com_lab_name_mod").find("option[value=" + json["com"][i]["labId"] + "]").attr("class", "selected");
+        $("#com_mod_confirm").attr("onclick", "modifyCom(" + json["com"][i]["computerId"] + ")");
     }
 
     function modifyCom(computerId) {
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "modifyCom",username:JSON.parse($.cookie("loginCookie"))["username"],computerId:computerId,ipAddress:$("#com_ip_mod").val(),location:$("#com_num_mod").val(),labId:json["lab"][$("#com_lab_name_mod").val()]["labId"]},
+            data: {
+                method: "modifyCom",
+                username: JSON.parse($.cookie("loginCookie"))["username"],
+                computerId: computerId,
+                ipAddress: $("#com_ip_mod").val(),
+                location: $("#com_num_mod").val(),
+                labId: json["lab"][$("#com_lab_name_mod").val()]["labId"]
+            },
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 console.log(data);
-                if(JSON.parse(data)["success"]==1){
+                if (JSON.parse(data)["success"] == 1) {
                     reLoad();
+                    $("#com_mod_modal1").modal("close");
                 }
-                else{
+                else {
                     alert("修改失败");
                 }
             }
@@ -797,26 +800,168 @@
     }
 
     function openModifyUser(i) {
-        $("#acc_name_mod").attr("value",json["user"][i]["userName"]);
-        $("#user_mod_confirm").attr("onclick","modifyUser("+ json["user"][i]["userId"]+")");
+        $("#acc_name_mod").attr("value", json["user"][i]["userName"]);
+        $("#label_acc_name_mod").attr("class", "active");
+        $("#acc_tel_mod").attr("value", json["user"][i]["tel"]);
+        $("#label_acc_tel_mod").attr("class", "active");
+        $("#user_mod_confirm").attr("onclick", "modifyUser(" + json["user"][i]["userId"] + ")");
+
     }
+
     function modifyUser(userId) {
         $.ajax({
             type: 'POST',
             url: 'http://127.0.0.1:8080/mainPage',
-            data: {method: "modifyUser",username:JSON.parse($.cookie("loginCookie"))["username"],userId:userId,acc_name:$("#acc_name_mod").val(),acc_psd:$("#acc_pas_mod").val()},
+            data: {
+                method: "modifyUser",
+                username: JSON.parse($.cookie("loginCookie"))["username"],
+                userId: userId,
+                acc_name: $("#acc_name_mod").val(),
+                acc_psd: $("#acc_pas_mod").val(),
+                tel: $("#acc_tel_mod").val()
+            },
             header: {'Access-Control-Allow-Origin': '*'},
             success: function (data) {
                 console.log(data);
-                if(JSON.parse(data)["success"]==1){
+                if (JSON.parse(data)["success"] == 1) {
                     reLoad();
+                    $("#acc_mod_modal1").modal("close");
                 }
-                else{
+                else {
                     alert("修改失败");
                 }
             }
         });
     }
+
+    function openCreateLab() {
+        $("#lab_lead_add").empty();
+        for (let i in json["user"]) {
+            $("#lab_lead_add").append("<option value='" + i + "'>" + json["user"][i]["userName"] + "</option>");
+        }
+        $('select').formSelect();
+    }
+
+    function createLab() {
+        if ($("#lab_name_add").val() == "") {
+            $("#lab_name_add").attr("class", "validate invalid");
+        }
+        else if ($("#lab_loc_add").val() == "") {
+            $("#lab_loc_add").attr("class", "validate invalid");
+        }
+        else if ($("#lab_safe_level_add").val() == null) {
+            $("#lab_safe_level_add").attr("class", "validate invalid");
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8080/mainPage',
+                data: {
+                    method: "createLab",
+                    username: JSON.parse($.cookie("loginCookie"))["username"],
+                    labName: $("#lab_name_add").val(),
+                    labLeader: json["user"][$("#lab_lead_add").val()]["userId"],
+                    location: $("#lab_loc_add").val(),
+                    safeLevel: $("#lab_safe_level_add").val()
+                },
+                header: {'Access-Control-Allow-Origin': '*'},
+                success: function (data) {
+                    console.log(data);
+                    if (JSON.parse(data)["success"] == 1) {
+                        reLoad();
+                        $("#lab_add_modal1").modal("close");
+                    }
+                    else {
+                        alert("添加失败");
+                    }
+                }
+            });
+        }
+    }
+
+    function openCreateCom() {
+        $("#com_lab_add").empty();
+        for (let i in json["lab"]) {
+            $("#com_lab_add").append("<option value='" + i + "'>" + json["lab"][i]["labName"] + "</option>");
+        }
+        $('select').formSelect();
+    }
+
+    function createCom() {
+        let reg = /^(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])\.(\d{1,2}|1\d\d|2[0-4]\d|25[0-5])$/;
+        if (!reg.test($("#com_ip_add").val())) {
+            $("#com_ip_add").attr("class", "validate invalid");
+        }
+        else if ($("#com_num_add").val() == "") {
+            $("#com_num_add").attr("class", "validate invalid");
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8080/mainPage',
+                data: {
+                    method: "createCom",
+                    username: JSON.parse($.cookie("loginCookie"))["username"],
+                    ipAddress: $("#com_ip_add").val(),
+                    location: $("#com_num_add").val(),
+                    labId: json["lab"][$("#com_lab_add").val()]["labId"]
+                },
+                header: {'Access-Control-Allow-Origin': '*'},
+                success: function (data) {
+                    console.log(data);
+                    if (JSON.parse(data)["success"] == 1) {
+                        reLoad();
+                        $("#com_add_modal1").modal("close");
+                    }
+                    else {
+                        alert("创建失败");
+                    }
+                }
+            });
+        }
+
+    }
+
+    function createUser() {
+        if ($("#acc_id_add").val() == "") {
+            $("#label_acc_id_add").attr("class", "validate invalid");
+        }
+        else if ($("#acc_name_add").val() == "") {
+            $("#label_acc_name_add").attr("class", "validate invalid");
+        }
+        else if ($("#acc_pas_add").val() == "") {
+            $("#label_acc_pas_add").attr("class", "validate invalid");
+        }
+        else if ($("#acc_tel_add").val() == "") {
+            $("#label_acc_tel_add").attr("class", "validate invalid");
+        }
+        else {
+            $.ajax({
+                type: 'POST',
+                url: 'http://127.0.0.1:8080/mainPage',
+                data: {
+                    method: "createUser",
+                    username: JSON.parse($.cookie("loginCookie"))["username"],
+                    userId: $("#acc_id_add").val(),
+                    acc_name: $("#acc_name_add").val(),
+                    acc_psd: $("#acc_pas_add").val(),
+                    tel: $("#acc_tel_add").val()
+                },
+                header: {'Access-Control-Allow-Origin': '*'},
+                success: function (data) {
+                    console.log(data);
+                    if (JSON.parse(data)["success"] == 1) {
+                        reLoad();
+                        $("#acc_add_modal1").modal("close");
+                    }
+                    else {
+                        alert("创建失败");
+                    }
+                }
+            });
+        }
+    }
+
     function reLoad() {
         $.ajax({
             type: 'POST',

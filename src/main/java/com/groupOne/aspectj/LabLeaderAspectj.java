@@ -1,8 +1,10 @@
 package com.groupOne.aspectj;
 
 import com.groupOne.DAO.LabDAO;
+import com.groupOne.DAO.UserDAO;
 import com.groupOne.model.AdminEntity;
 import com.groupOne.model.LabEntity;
+import com.groupOne.model.UserEntity;
 import com.groupOne.servlet.MyListener;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
@@ -28,13 +30,9 @@ public class LabLeaderAspectj {
             object=proceedingJoinPoint.proceed();
         }
         else{
-            LabDAO labDAO = (LabDAO)MyListener.applicationContext.getBean("labDAO");
-            LabEntity labEntity = new LabEntity();
-            labEntity.setLabLeader(username);
-            labEntity.setLocation(-1);
-            labEntity.setSafeLevel(-1);
-            List<LabEntity> temp2 = labDAO.searchLab(labEntity);
-            if(!temp2.isEmpty()) {
+            Session session1 = MyListener.sessionFactory.openSession();
+             UserEntity user = session1.get(UserEntity.class,username);
+            if(user.getUserType()==1) {
                 object = proceedingJoinPoint.proceed();
             }
             else {

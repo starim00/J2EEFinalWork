@@ -84,10 +84,42 @@ public class MainPageServlet extends HttpServlet {
                 user.setUserId(request.getParameter("userId"));
                 user.setUserName(request.getParameter("acc_name"));
                 user.setPasswd(request.getParameter("acc_psd"));
+                user.setTel(Integer.parseInt(request.getParameter("tel")));
                 result = modifyUser(user);
             }catch (Exception e){
                 result = "{\"success\":0}";
             }
+        }
+        if(method.equals("createLab")){
+            LabEntity lab = new LabEntity();
+            lab.setLabName(request.getParameter("labName"));
+            lab.setLabLeader(request.getParameter("labLeader"));
+            lab.setLocation(Integer.parseInt(request.getParameter("location")));
+            lab.setSafeLevel(Integer.parseInt(request.getParameter("safeLevel")));
+            result = createLab(request.getParameter("username"),lab);
+        }
+        if(method.equals("createCom")){
+            ComputerEntity computer = new ComputerEntity();
+            computer.setIpAddress(request.getParameter("ipAddress"));
+            computer.setLocation(Integer.parseInt(request.getParameter("location")));
+            computer.setLabId(Integer.parseInt(request.getParameter("labId")));
+            result = createCom(request.getParameter("username"),computer);
+        }
+        if(method.equals("createUser")){
+            UserEntity user = new UserEntity();
+            user.setUserId(request.getParameter("userId"));
+            user.setUserName(request.getParameter("acc_name"));
+            user.setPasswd(request.getParameter("acc_psd"));
+            user.setTel(Integer.parseInt(request.getParameter("tel")));
+            user.setUserType(0);
+            result = createUser(request.getParameter("username"),user);
+        }
+        if(method.equals("searchLab")){
+            LabEntity lab = new LabEntity();
+            lab.setLabName(request.getParameter("labName"));
+            lab.setLabLeader(request.getParameter("labLeader"));
+            lab.setLocation(Integer.parseInt(request.getParameter("location")));
+            lab.setSafeLevel(Integer.parseInt(request.getParameter("safeLevel")));
         }
         response.setCharacterEncoding("UTF-8");
         response.getWriter().write(result);
@@ -129,6 +161,7 @@ public class MainPageServlet extends HttpServlet {
             userJson.setUserId(user.getUserId());
             userJson.setUserName(user.getUserName());
             userJson.setTel(user.getTel());
+            userJson.setUserType(user.getUserType());
             listUser.add(userJson);
         }
         load.setUser(listUser);
@@ -248,6 +281,9 @@ public class MainPageServlet extends HttpServlet {
         String result;
         try {
             labDAO.modifyLab(username,lab);
+            UserEntity user = userDAO.getUserByUserId(lab.getLabLeader());
+            user.setUserType(1);
+            userDAO.modifyUser(user);
             result = "{\"success\":1}";
         } catch (Exception e) {
             result = "{\"success\":0}";
@@ -267,15 +303,67 @@ public class MainPageServlet extends HttpServlet {
     private String modifyUser(UserEntity user){
         String result;
         UserEntity oldUser = userDAO.getUserByUserId(user.getUserId());
-        if(user.getPasswd()==null){
-            user.setPasswd(oldUser.getPasswd());
+        if(user.getPasswd()!=null){
+            oldUser.setPasswd(user.getPasswd());
         }
+        oldUser.setUserName(user.getUserName());
+        oldUser.setTel(user.getTel());
         try {
-            userDAO.modifyUser(user);
+            userDAO.modifyUser(oldUser);
             result = "{\"success\":1}";
         }catch (Exception e){
             result = "{\"success\":0}";
         }
+        return result;
+    }
+    private String createLab(String username,LabEntity lab){
+        String result;
+        try {
+            labDAO.insertLab(username,lab);
+            UserEntity user = userDAO.getUserByUserId(lab.getLabLeader());
+            user.setUserType(1);
+            userDAO.modifyUser(user);
+            result = "{\"success\":1}";
+        } catch (Exception e) {
+            result = "{\"success\":0}";
+        }
+        return result;
+    }
+    private String createCom(String username,ComputerEntity computer){
+        String result;
+        try {
+            computerDAO.insertComputer(username,computer);
+            result = "{\"success\":1}";
+        } catch (Exception e) {
+            result = "{\"success\":0}";
+        }
+        return result;
+    }
+    private String createUser(String username,UserEntity user){
+        String result;
+        try {
+            userDAO.insertUser(username,user);
+            result = "{\"success\":1}";
+        } catch (Exception e) {
+            result = "{\"success\":0}";
+        }
+        return result;
+    }
+    private String searchLab(LabEntity labEntity){
+        String result;
+        List<LabEntity> templab = labDAO.searchLab(labEntity);
+        List<labJson> listLab = new ArrayList<labJson>();
+        for(LabEntity lab:templab){
+            labJson labJson = new labJson();
+            labJson.setLabId(lab.getLabId());
+            labJson.setLabName(lab.getLabName());
+            labJson.setLabLeader(lab.getLabLeader());
+            labJson.setLocation(lab.getLocation());
+            labJson.setSafeLevel(lab.getSafeLevel());
+            listLab.add(labJson);
+        }
+        Gson gson = new Gson();
+        result = gson.toJson(listLab,labJson.class);
         return result;
     }
 }
