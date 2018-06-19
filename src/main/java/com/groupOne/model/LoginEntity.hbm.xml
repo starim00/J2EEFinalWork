@@ -8,6 +8,9 @@
         <id name="loginId">
             <column name="loginID" sql-type="int(11)"/>
         </id>
+        <property name="computerId">
+            <column name="computerID" sql-type="int(11)"/>
+        </property>
         <property name="userId">
             <column name="userID" sql-type="varchar(255)"/>
         </property>
@@ -17,8 +20,11 @@
         <property name="outTime">
             <column name="outTime" sql-type="bigint(20)"/>
         </property>
-        <property name="computerId">
-            <column name="computerID" sql-type="int(11)"/>
-        </property>
+        <many-to-one name="computerByComputerId" class="com.groupOne.model.ComputerEntity" insert="false" update="false" lazy="false">
+            <column name="computerID"/>
+        </many-to-one>
+        <many-to-one name="userByUserId" class="com.groupOne.model.UserEntity" insert="false" update="false" lazy="false">
+            <column name="userID"/>
+        </many-to-one>
     </class>
 </hibernate-mapping>

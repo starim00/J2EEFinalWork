@@ -47,11 +47,11 @@ public class HomeServlet extends HttpServlet {
     private String load() {
         String result = "";
         List<LabEntity> list = labDAO.loadAllLab();
-        List<LoadJson> temp = new ArrayList<LoadJson>();
+        List<LoadHomeJson> temp = new ArrayList<LoadHomeJson>();
         UserEntity leader;
         for (int i = 0; i < list.size(); i++) {
             leader = userDAO.getUserByUserId(list.get(i).getLabLeader());
-            LoadJson ins = new LoadJson();
+            LoadHomeJson ins = new LoadHomeJson();
             ins.setLabLeader(list.get(i).getLabLeader());
             ins.setLabName(list.get(i).getLabName());
             ins.setLocation(list.get(i).getLocation());
@@ -64,7 +64,8 @@ public class HomeServlet extends HttpServlet {
     }
 
     private String modify(String username, String password,String password_new) {
-        AdminEntity admin = adminDAO.getAdminById(username, username);
+        AdminEntity admin;
+        admin = adminDAO.getAdminById(username, username);
         String pa = "PasswordError";
         boolean ps = false;
         if (admin != null) {
@@ -103,8 +104,7 @@ public class HomeServlet extends HttpServlet {
         }
     }
 }
-
-class LoadJson {
+class LoadHomeJson {
     private String labName;
     private int location;
     private String labLeader;

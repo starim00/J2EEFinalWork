@@ -63,8 +63,8 @@
 <script>
     function whenSubmit() {
         document.getElementById("err").setAttribute("data-error","请输入密码");
-            let form = document.getElementsByTagName('form')[0];
-            if (form.username.value == '') {
+        let form = document.getElementsByTagName('form')[0];
+        if (form.username.value == '') {
             form.username.setAttribute("class", "validate invalid");
             return false;
         }

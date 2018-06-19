@@ -8,6 +8,6 @@ public interface ILoginDAO {
     public List<LoginEntity> loadAllLogin();
     public boolean deleteLogin(int loginId) throws Exception ;
     public List<LoginEntity> searchLoginByComputerId(int computerId);
-    public List<LoginEntity> searchLoginByUserId(int userId);
+    public List<LoginEntity> searchLoginByUserId(String userId);
     public boolean insertLogin(LoginEntity loginEntity);
 }

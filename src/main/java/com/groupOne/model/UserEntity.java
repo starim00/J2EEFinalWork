@@ -1,6 +1,7 @@
 package com.groupOne.model;
 
 import javax.persistence.*;
+import java.util.Collection;
 
 @Entity
 @Table(name = "user", schema = "j2ee")
@@ -10,6 +11,8 @@ public class UserEntity {
     private String passwd;
     private Integer tel;
     private Integer userType;
+    private Collection<LabEntity> labsByUserId;
+    private Collection<LoginEntity> loginsByUserId;
 
     @Id
     @Column(name = "userID", nullable = false, length = 255)
@@ -85,5 +88,23 @@ public class UserEntity {
         result = 31 * result + (tel != null ? tel.hashCode() : 0);
         result = 31 * result + (userType != null ? userType.hashCode() : 0);
         return result;
+    }
+
+    @OneToMany(mappedBy = "userByLabLeader")
+    public Collection<LabEntity> getLabsByUserId() {
+        return labsByUserId;
+    }
+
+    public void setLabsByUserId(Collection<LabEntity> labsByUserId) {
+        this.labsByUserId = labsByUserId;
+    }
+
+    @OneToMany(mappedBy = "userByUserId")
+    public Collection<LoginEntity> getLoginsByUserId() {
+        return loginsByUserId;
+    }
+
+    public void setLoginsByUserId(Collection<LoginEntity> loginsByUserId) {
+        this.loginsByUserId = loginsByUserId;
     }
 }

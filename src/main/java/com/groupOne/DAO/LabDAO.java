@@ -3,7 +3,6 @@ package com.groupOne.DAO;
 import com.groupOne.model.LabEntity;
 import com.groupOne.servlet.MyListener;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +26,10 @@ public class LabDAO implements ILabDAO {
         if (lab == null) {
             throw new Exception("实验室不存在");
         }
+        String hql = "delete from ComputerEntity where labId = :labId";
+        Query query = session.createQuery(hql);
+        query.setParameter("labId",labId);
+        query.executeUpdate();
         session.delete(lab);
         return true;
     }
@@ -80,5 +83,10 @@ public class LabDAO implements ILabDAO {
         Session session = MyListener.sessionFactory.getCurrentSession();
         session.save(labEntity);
         return true;
+    }
+
+    public LabEntity getlabById(int labId) {
+        Session session = MyListener.sessionFactory.getCurrentSession();
+        return session.get(LabEntity.class,labId);
     }
 }

@@ -30,8 +30,12 @@ public class UserDAO implements IUserDAO {
         Session session = MyListener.sessionFactory.getCurrentSession();
         UserEntity user = session.get(UserEntity.class, userId);
         if (user == null) {
-            throw new Exception("实验室不存在");
+            throw new Exception("用户不存在");
         }
+        String hql = "delete from LoginEntity where userId = :userId";
+        Query query = session.createQuery(hql);
+        query.setParameter("userId",userId);
+        query.executeUpdate();
         session.delete(user);
         return true;
     }

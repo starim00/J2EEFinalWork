@@ -14,7 +14,7 @@ import java.util.List;
 public class ComputerDAO implements IComputerDAO {
 
     public synchronized List<ComputerEntity> loadAllComputer() {
-        String hql = "from ComputerEntity ";
+        String hql = "from ComputerEntity";
         Session session = MyListener.sessionFactory.getCurrentSession();
         List<ComputerEntity> result = session.createQuery(hql).list();
         return result;
@@ -26,26 +26,29 @@ public class ComputerDAO implements IComputerDAO {
         if (computer == null) {
             throw new Exception("计算机不存在");
         }
+        String hql ="delete from LoginEntity where computerId = :computerId";
+        Query query = session.createQuery(hql);
+        query.setParameter("computerId",computerId);
+        query.executeUpdate();
         session.delete(computer);
         return true;
     }
 
-    public synchronized List<Object[]> searchComputer(int location, String labName) {
-        Session session = MyListener.sessionFactory.getCurrentSession();
-        List<Object[]> result;
+    public synchronized List<ComputerEntity> searchComputer(int location, int labId) {
+        Query query;
+        List<ComputerEntity> result;
         if (location == -1) {
-            String hql = "select ComputerEntity ,LabEntity .labName " +
-                    "from ComputerEntity left join LabEntity on ComputerEntity .labId=LabEntity .labId " +
-                    "where LabEntity .labName like :labName";
-            Query query = session.createQuery(hql);
-            query.setParameter("labName", "%" + labName + "%");
+            String hql = "from ComputerEntity where labId = :labId";
+            Session session = MyListener.sessionFactory.getCurrentSession();
+            query = session.createQuery(hql);
+            query.setParameter("labId", labId);
             result = query.list();
-        } else {
-            String hql = "select ComputerEntity ,LabEntity .labName " +
-                    "from ComputerEntity left join LabEntity on ComputerEntity .labId=LabEntity .labId " +
-                    "where LabEntity .labName like :labName and ComputerEntity .location=:location";
-            Query query = session.createQuery(hql);
-            query.setParameter("labName", "%" + labName + "%");
+        }
+        else {
+            String hql = "from ComputerEntity where ComputerEntity.labId = :labId and ComputerEntity .location=:location";
+            Session session = MyListener.sessionFactory.getCurrentSession();
+            query = session.createQuery(hql);
+            query.setParameter("labId", labId);
             query.setParameter("location", location);
             result = query.list();
         }
@@ -69,4 +72,8 @@ public class ComputerDAO implements IComputerDAO {
         return true;
     }
 
+    public ComputerEntity getComputerById(int computerId) {
+        Session session = MyListener.sessionFactory.getCurrentSession();
+        return session.get(ComputerEntity.class,computerId);
+    }
 }

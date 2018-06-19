@@ -27,6 +27,14 @@
         <servlet-name>home</servlet-name>
         <url-pattern>/home</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>mainPage</servlet-name>
+        <servlet-class>com.groupOne.servlet.MainPageServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>mainPage</servlet-name>
+        <url-pattern>/mainPage</url-pattern>
+    </servlet-mapping>
     <listener>
         <listener-class>com.groupOne.servlet.MyListener</listener-class>
     </listener>

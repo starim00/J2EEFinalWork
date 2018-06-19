@@ -3,7 +3,6 @@ package com.groupOne.DAO;
 import com.groupOne.model.LoginEntity;
 import com.groupOne.servlet.MyListener;
 import org.hibernate.Session;
-import org.hibernate.Transaction;
 import org.hibernate.query.Query;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
@@ -41,10 +40,10 @@ public class LoginDAO implements ILoginDAO {
         return result;
     }
 
-    public synchronized List<LoginEntity> searchLoginByUserId(int userId) {
+    public synchronized List<LoginEntity> searchLoginByUserId(String userId) {
         Session session = MyListener.sessionFactory.getCurrentSession();
         List<LoginEntity> result;
-        String hql = "from LoginEntity where userId  = :userId";
+        String hql = "from LoginEntity where userId  like :userId";
         Query query = session.createQuery(hql);
         query.setParameter("userId", userId);
         result = query.list();
